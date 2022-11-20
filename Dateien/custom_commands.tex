@@ -1,0 +1,195 @@
+
+\bibpunct{[}{]}{;}{a}{}{,}
+\usepackage{scalerel}
+\def\stretchint#1{\vcenter{\hbox{\stretchto[440]{\displaystyle\int}{#1}}}}
+\def\bs{\mkern-12mu}
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+
+
+\numberwithin{equation}{section}
+\let\oldsection\section  % Footnotecounter resetten
+\renewcommand{\section}{\setcounter{footnote}{0}\oldsection}
+\renewcommand{\thefootnote}{\Roman{footnote}}
+\setlist[itemize]{topsep=1pt, itemsep=0pt, parsep=0.5pt}  % Itemize manipulieren
+\setlist[enumerate]{topsep=1pt, itemsep=0pt, parsep=0.5pt}  % Itemize manipulieren
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Neue Umgebungen
+\NewEnviron{Answer}
+{%
+\noindent
+\rotatebox[origin=c]{180}{%
+\noindent
+\begin{minipage}[t]{\linewidth}
+\BODY
+\end{minipage}%
+}%
+}%
+
+\newcommand{\C} {\mathbb{C}} 
+\newcommand{\N} {\mathbb{N}} 
+\newcommand{\Q} {\mathbb{Q}} 
+\newcommand{\R} {\mathbb{R}}
+\newcommand{\Z} {\mathbb{Z}}
+
+\definecolor{mygreen}{RGB}{17,100,8}
+\newtcolorbox[auto counter,number within=section]{Def}[2][]{%
+breakable, enhanced, sharp corners, rounded corners=northwest, rounded corners=southeast, colback=blue!5!white,colframe=black!75!black,fonttitle=\bfseries,
+title=Definition~\thetcbcounter: #2,#1}
+
+\newtcolorbox[auto counter, number within=section]{Satz}[3][]{%
+breakable, enhanced, sharp corners, rounded corners=southwest, rounded corners=northeast, colback=blue!5!white,colframe=red!75!black,fonttitle=\bfseries,
+title=#2~\thetcbcounter: #3,#1}
+
+\newtcolorbox[auto counter,number within=section]{Beispiel}[2][]{%
+breakable, enhanced, colback=blue!5!white,colframe=blue!75!black, fonttitle=\bfseries,
+title=Beispiel~\thetcbcounter: #2,#1}
+
+\newtcolorbox[auto counter,number within=section]{Wiederholung}[2][]{%
+breakable, enhanced, sharp corners, colback=green!5!white,colframe=mygreen!75!black, fonttitle=\bfseries,
+title=Wiederholung~\thetcbcounter: #2,#1}
+
+\makeatletter
+\def\iddots{\mathinner{\mkern1mu\raise\p@
+\vbox{\kern7\p@\hbox{.}}\mkern2mu
+\raise4\p@\hbox{.}\mkern2mu\raise7\p@\hbox{.}\mkern1mu}}
+\makeatother
+
+
+\makeatletter
+\newcommand{\tx}[1]{\text{#1}}
+\newcommand{\Menge}[2]{\left\{#1\furdas#2\right\}}
+\newcommand{\MengeDirekt}[1]{\left\{#1\right\}}
+\newcommand{\diff}[2]{\frac{\text{d}#1}{\text{d}#2}}
+\newcommand{\diffp}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\BiFo}[1]{\left\langle#1\right\rangle}
+\newcommand{\Norm}[1]{\left|\left|#1\right|\right|}
+\newcommand{\BiFoLeer}{\left\langle\cdot,\cdot\right\rangle}
+\newcommand{\NormLeer}{\left|\left|\cdot\right|\right|}
+\newcommand{\Spoiler}[1]{Hier werden wir nach Abgabe des Blattes den Lösungsweg skizzieren.}
+\newcommand{\Matrix}[1]{\begin{pmatrix}#1\end{pmatrix}}
+\newcommand{\MatrixAbs}[1]{\begin{vmatrix}#1\end{vmatrix}}
+\newcommand{\MatrixInline}[1]{\left(\begin{smallmatrix}#1\end{smallmatrix}\right)}
+\newcommand{\MatrixInvertieren}[2]{\left(\begin{matrix}#1\end{matrix}\,\left|\,\begin{matrix}#2\end{matrix}\right.\right)}
+\newcommand{\Span}[2]{\text{span}\left\{#1\furdas#2\right\}}
+\newcommand{\Spann}[1]{\text{span}\left\{#1\right\}}
+\newcommand{\EinheitsN}{\mathds{1}_n}
+\newcommand{\red}[1]{\textcolor{red}{\textbf{#1}}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\UausC}{Sei $U\subset\mathbb{C}$ offen}
+\newcommand{\Res}{\text{Res}}
+\newcommand{\qedsquare}{\hfill $\square$}
+\newcommand{\qed}{\hfill \textbf{q.e.d.}}
+\newcommand{\furdas}{\,|\,}
+\newcommand{\mybox}[1]{\parbox[t]{8.5cm}{#1}}
+\newcommand{\myboxU}[1]{\parbox[b]{8.5cm}{#1}}
+\newcommand{\Zz}[1]{\textbf{Beh.}: \textbf{\textit{#1}}\\}
+\newcommand{\Zb}[1]{\textbf{Bew.}: \blue{#1}\qedsquare}
+\newcommand{\ZbOhne}[1]{\textbf{Bew.}: \blue{#1}}
+\newcommand{\Skript}{\href{https://www.math.uni-hamburg.de/home/lentner/MfPh1/SkriptMfP1Lentner2020.pdf}{Skript}}
+\newcommand{\Limes}[1]{\lim_{#1\rightarrow\infty}}
+\newcommand{\LimesSum}[1]{\sum_{#1=0}^\infty}
+\newcommand{\LimesSumOne}[1]{\sum_{#1=1}^\infty}
+\newcommand{\LimesXiToX}{\lim_{\xi\to x}}
+\newcommand{\SinusReihe}{\LimesSum{k}(-1)^k\frac{z^{2k+1}}{(2k+1)!}}
+\newcommand{\KosinusReihe}{\LimesSum{k}(-1)^k\frac{z^{2k}}{(2k)!}}
+\newcommand{\ExpReihe}[1]{\LimesSum{k}\frac{#1^{k}}{k!}}
+\newcommand{\Cases}[1]{\begin{cases}#1\end{cases}}
+\newcommand{\Id}{\text{Id}}
+\newcommand{\BracedIn}[1]{\left({#1}\right)}
+\newcommand{\BracedInSqr}[1]{\left[{#1}\right]}
+\newcommand{\Abs}[1]{\left|{#1}\right|}
+\newcommand{\artanh}{\text{artanh}}
+\newcommand{\arsinh}{\text{arsinh}}
+\newcommand{\arcosh}{\text{arcosh}}
+\newcommand{\Disclaimer}{\textcolor{blue}{
+$\left[\,\text{\parbox{0.95\textwidth}{\vspace{0.1cm}\textit{\textbf{Hinweis:}\\
+Da wir euch offiziell nichts vorsagen sollen (was ja auch sinnvoll ist), sind die Tipps sehr allgemein gehalten. Hoffentlich helfen sie euch trotzdem, Ansätze zu finden, falls ihr mal nicht weiter kommt.\\
+Bei konkreten Fragen helfen wir gerne persönlich.\vspace{0.1cm}}}}\,\right]$
+}}
+\newcommand{\Einleitung}[1]{\subsection*{Ausblick}
+    \textcolor{blue}{\textit{#1}}}
+\newcommand{\IV}{\text{IV}}
+\newcommand{\im}{\text{im}}
+\newcommand{\Abb}{\text{Abb}}
+\newcommand{\Bij}{\text{Bij}}
+\newcommand{\I}{\text{I}}
+\newcommand{\II}{\text{II}}
+\newcommand{\III}{\text{III}}
+\newcommand{\card}{\text{card}}
+\newcommand{\diag}{\text{diag}}
+\newcommand{\grad}{\text{grad}}
+\newcommand{\Hess}{\text{Hess}}
+\newcommand{\rot}{\text{rot}}
+\newcommand{\divv}{\text{div}}
+\newcommand{\Diff}{\text{Diff}}
+\newcommand{\Met}{\text{Mat}}
+\newcommand{\Tr}{\text{Tr}}
+\newcommand{\rg}{\text{rg}}
+\newcommand{\End}{\text{End}}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\GL}{\text{GL}}
+\newcommand{\SL}{\text{SL}}
+\newcommand{\ad}{\text{ad}}
+\newcommand{\sgn}{\text{sgn}}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\let\oldhref\href
+\renewcommand{\href}[2]{\oldhref{#1}{\underline{\bfseries#2}}}
+\renewcommand{\Re}{\text{Re}}
+\renewcommand{\Im}{\text{Im}}
+\newcommand{\rvec}{{\Vec{r}}}
+\newcommand{\uvec}{{\Vec{u}}}
+\newcommand{\pvec}{{\Vec{p}}}
+\newcommand{\qvec}{{\Vec{q}}}
+\newcommand{\jvec}{{\Vec{j}}}
+\newcommand{\vvec}{{\Vec{v}}}
+\newcommand{\fvec}{{\Vec{f}}}
+\newcommand{\gvec}{{\Vec{g}}}
+\newcommand{\hvec}{{\Vec{h}}}
+\newcommand{\lvec}{{\Vec{l}}}
+\newcommand{\evec}{{\Vec{e}}}
+\newcommand{\yvec}{{\Vec{y}}}
+\newcommand{\bvec}{{\Vec{b}}}
+\newcommand{\cvec}{{\Vec{c}}}
+\newcommand{\nablavec}{{\Vec{\nabla}}}
+\newcommand{\alphavec}{{\Vec{\alpha}}}
+\newcommand{\psivec}{{\Vec{\psi}}}
+\newcommand{\varphivec}{{\Vec{\varphi}}}
+\newcommand{\xivec}{{\Vec{\xi}}}
+\newcommand{\avec}{{\Vec{a}}}
+\newcommand{\svec}{{\Vec{s}}}
+\newcommand{\nvec}{{\Vec{n}}}
+\newcommand{\xvec}{{\Vec{x}}}
+\newcommand{\Fvec}{{\Vec{F}}}
+\newcommand{\Gvec}{{\Vec{G}}}
+\newcommand{\wvec}{{\Vec{w}}}
+\newcommand{\zvec}{{\Vec{z}}}
+\newcommand{\dvec}{{\Vec{d}}}
+\newcommand{\graph}{\text{graph}}
+\newcommand{\Nullvec}{{\Vec{0}}}
+\renewcommand{\Vec}[1]{{\text{\boldmath${#1}$}}}%\overset{_\rightharpoonup}
+
+% \renewcommand{\Vec}[1]{{\mathbf{#1}}}%\overset{_\rightharpoonup}
+\setlength{\parindent}{0pt}		 %Verhindert den automatischen Erstzeileneinzug
+
+
+
+%%%%%%%%%%% Titel, Profs, Zeitraum etc.
+\newcommand{\titel}{Notizen zur Vorlesung\\
+\textit{Mathematik III für Studierende der Computing in Science, Geophysik/ Ozeanographie, Meteorologie und Physik}\\
+WiSe 2022/23
+}
+\newcommand{\Kurztitel}{MfP3-Notizen}
+\newcommand{\Zeitraum}{WiSe 2022/23}
+\newcommand{\Profs}{Vorlesung von Dr. \textsf{Ralf Holtkamp}}
+%%%%%%%%%%%
+\automark{section}
+\ihead{\textit{\Kurztitel}}
+\chead{\emph{\headmark}}
+\ohead{\Zeitraum}
+\cfoot{\pagemark}
+
+\title{\titel}
+\date{\Zeitraum}
