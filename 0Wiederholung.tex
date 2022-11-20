@@ -1,0 +1,138 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section[Wiederholung]{Riemann-Integrale und Untermannigfaltigkeiten}
+\subsection{Riemann-Integrale}\label{ssec:Riemann-Integrale}
+\begin{Def}
+{Ober- und Unterintegral}
+Sei $f:[a,b]\rightarrow \R$ eine beschränkte Funktion. Das \red{Oberintegral} von $f$ ist die Zahl
+$$\int_a^{*b}f(x)dx=\inf \{ \int_a^b \varphi(x)dx | \varphi \text{ Treppenfunktion mit } \varphi\geq f \} $$
+Das \red{Unterintegral} von $f$ ist die Zahl
+$$\int_{*a}^{b}f(x)dx=\sup \{ \int_a^b \varphi(x)dx | \varphi \text{ Treppenfunktion mit } \varphi\leq f \} $$
+\end{Def}
+
+\begin{Def}
+{Riemann-integrierbare Funktion}
+Eine beschränkte Funktion $f:[a,b]\rightarrow \R$ heißt \red{Riemann-integrierbar}, wenn $$\int_a^{*b}f(x)dx=\int_{*a}^bf(x)dx$$
+\end{Def}
+Ebenso ist es in der Analysis nützlich den Begriff des uneigentlichen Integrals zu verstehen, wenn der Definitionsbereich unbeschränkt ist.
+\begin{Def}
+{Uneigentliches Integral}
+Sei $f:(a,b]\rightarrow \R$ nicht unbedingt beschränkt, aber für jedes Teilinterval $[\alpha, b] \in (a,b]$ integrierbar. Falls dann der Grenzwert
+$$\lim_{\epsilon\rightarrow a}\int_\epsilon^{b} f(x)dx$$ existiert, so nennen wir $f$ über das Intervall $(a,b]$ \red{uneigentlich integrierbar}.
+\end{Def}
+\begin{Beispiel}
+{Uneigentliches Integral}
+Betrachten wir $\int_0^1 \frac{1}{\sqrt{x}}dx$. Dieses Integral kann als uneigentliches integral sinnvoll definiert werden:
+$$\lim_{\epsilon\rightarrow 0}\int_\epsilon^1 \frac{1}{\sqrt{x}} dx =\lim_{\epsilon\rightarrow 0} [2\sqrt{x}]_\epsilon^1=\lim_{\epsilon\rightarrow 0}2\sqrt{1}-2\sqrt{\epsilon}=2$$
+\end{Beispiel}
+Die Gamma-Funktion $\Gamma(s)=\int_0^\infty t^{s-1}e^{-t}dt$ ist sehr nützlich, denn es gilt $\Gamma(s+1)=s\Gamma(s)$, also ist die Funktion perfekt dazu geeignet, um die Fakultät zu berechnen: $\Gamma(n)=(n-1)!$
+
+\subsection{Topologie und Untermannigfaltigkeiten}\label{ssec:Topologie}
+Gewisse topologische Begriffe sind auch im MfP3 sehr wichtig.
+\begin{Def}
+{Offene Kugel}
+Die Teilmenge $\boxed{B_r(\xvec):=\Menge{\yvec\in X}{d(\xvec,\yvec)<r}\subseteq X}$ eines metrischen Raumes $(X,d)$ mit Abstandsfunktion $d$ heißt \red{offene Kugel} mit Mittelpunkt $\xvec$ und Radius $r$.
+\end{Def}
+\begin{Def}
+{Inneres}
+Für eine Teilmenge $A\subseteq X$ nennen wir die Vereinigung aller offenen Teilmengen das \red{Innere $\mathring{A}$} von $A$, also $\mathring{A}=\bigcup_{B\subseteq A}B$.
+\end{Def}
+
+\begin{Def}
+{Abschluss}
+Für eine Teilmenge $A\subseteq X$ nennen wir den Durchschnitt aller abgeschlossenen Mengen, die $A$ enthalten, den \red{Abschluss $\Bar{A}$} von $A$, also $\Bar{A}=\bigcap_{B\supset A, B\tx{ abgeschl.}}B$.
+\end{Def}
+\begin{Def}
+{Rand}
+Die Differenz aus diesen beiden Mengen ist dann der \red{Rand $\partial A$} von $A$, also $\partial A=\Bar{A}\setminus \mathring{A}$.
+\end{Def}
+\begin{Def}
+{Kompaktheit}
+Falls wir zu \underline{jeder} offenen Überdeckung $(U_i)_{i\in I}$ von $A\subseteq X$ eine endliche Teilüberdeckung, d.h. eine Einschränkung der Indexmenge $I$ auf eine endliche Menge $J\subseteq I$ finden, sodass $(U_i)_{i\in J}$ immer noch eine offene Überdeckung von $A$ ist, so nennen wir $A\subseteq X$ \red{kompakt}.
+\end{Def}
+\begin{Satz}
+{Folgerung}{Kompakte Teilmengen sind abgeschlossen und beschränkt}
+Jede kompakte Teilmenge $A\subseteq X$ eines metr. Raumes ist \underline{abgeschlossen}, \underline{vollständig} und \underline{beschränkt}.
+\end{Satz}
+Jetzt gehen wir über zu Untermannigfaltigkeiten und schließen die Wiederholung mit allgemeinen Mannigfaltigkeiten ab.
+\begin{Def}
+{Immersion}
+Ist $\rg(f)=m\,\forall \pvec\in U$, d. h. die Abbildung hat den konstanten Rang der Dimension des \underline{Urbildraums}, so sagen wir, dass $f$ eine \red{Immersion} ist.\\
+Das Differential $df:U\to\mathbb{R}^n$ ist dann injektiv. 
+\end{Def}
+\begin{Def}
+{$C^k$-Diffeomorphismen}
+$C^k$-Abbildungen $f:U\to V$, die bijektiv sind und deren Umkehrabbildungen auch $C^k$ sind, nennen wir \red{$C^k$-Diffeomorphismen}.
+\end{Def}
+\begin{Beispiel}
+{Bekannter Diffeomorphismus}
+Die Abbildung $f:\mathbb{R}\to\mathbb{R}_+\setminus\MengeDirekt{0},\,f(x)=e^x$ ist mit $f^{-1}:\mathbb{R}_+\setminus\MengeDirekt{0}\to\mathbb{R},\,f^{-1}(x)=\ln(x)$ ein Diffeomorphismus, denn beide sind stetig differenzierbar, bijektiv und\\
+$(f\circ f^{-1}=\Id_{\mathbb{R}_+\setminus\MengeDirekt{0}})\land (f^{-1}\circ f=\Id_\mathbb{R}).\,\checkmark$
+\end{Beispiel}
+Eine wichtige Eigenschaft von Diffeomorphisem ist, dass sie homoömorph sind.
+\begin{Def}
+{Untermannigfaltigkeit}
+Wir nennen eine Teilmenge $M\subseteq\mathbb{R}^n$ eine \red{$m$-dimensionale Untermannigfaltigkeit}, falls für jeden der Punkte $\pvec\in M$ die folgenden Eigenschaften erfüllt sind:
+\begin{itemize}
+    \item Es gibt eine offene Umgebung $V\subseteq\mathbb{R}^m$ von $\pvec$.
+    \item Es gibt eine $C^k$-Immersion\footnote{also eine Abbildung von Rang $m$} $F:U\to\mathbb{R}^n$, die eine offene Teilmenge $U\subseteq\mathbb{R}^m$ homöomorph auf $V\cap M$ abbildet.
+\end{itemize}
+\end{Def}
+\begin{Def}
+{Flächen und Hyperflächen}
+Zweidimensionale Untermannigfaltigkeiten des $\mathbb{R}^n$ nennen wir \red{Flächen}.\\
+$(n-1)$-dimensionale Untermannigfaltigkeiten des $\mathbb{R}^n$ nennen wir \red{Hyperflächen}.
+\end{Def}
+\begin{Satz}
+{Satz}{Untermannigfaltigkeiten als Urbilder unter Abbildungen von konstantem Rang}
+Sei $U\subseteq\mathbb{R}^n$ offen und $f:U\to\mathbb{R}^m$.
+\begin{itemize}
+    \item Ist $f$ eine $C^k$-Abbildung,
+    \item hat $f$ konstanten Rang $r$ und
+    \item ist $\qvec\in f(U)$,
+\end{itemize}
+so ist das Urbild\footnote{also alle Punkte, die auf $\qvec$ abgebildet werden} des Punktes $\qvec$ eine $C^k$-Untermannigfaltigkeit des $\mathbb{R}^n$ der Dimension \red{m=n-r}, also
+\begin{equation}
+    M:=f^{-1}(\qvec)\subseteq U.
+\end{equation}
+\end{Satz}
+\begin{Beispiel}
+    {Ein Beispiel von einer Untermannigfaltigkeit}
+    Gegeben sind die beiden Funktionen
+    \begin{equation*}
+        f_1(x)=x_1^2+x_1x_2-x_2-x_3 \qquad f_2(x)=x_1^2+3x_1x_2-2x_2-3x_3
+    \end{equation*}
+    und die Menge
+    \begin{equation*}
+        C:=\Menge{x\in\mathbb{R}^3}{f_1(x)=f_2(x)=0}.
+    \end{equation*}
+    Wir behaupten nun, dass $C$ eine eindimensionale $C^{\infty}$-Untermannigfaltigkeit des $\mathbb{R}^3$ ist. Dazu betrachten wir die Funktion $f:\mathbb{R}^3\rightarrow\mathbb{R}^2$, gegeben durch
+    \begin{equation*}
+        f(x)=\Matrix{f_1(x) \\ f_2(x)}
+    \end{equation*}
+    und stellen fest:
+    \begin{itemize}
+        \item $f$ ist $\infty$-oft differenzierbar
+        \item Das Differential ist
+        \begin{align*}
+            \text{d}f&=\Matrix{2x_1+x_2 & x_1-1 & -1 \\ 4x_1+3x_2 & 3x_1-2 & -3} \overset{Gauß}{\longrightarrow} \Matrix{2x_1 & x_1-1 & -1 \\ -2x_1 & -1 & 0} \\
+            &\Rightarrow \text{rg}(f)=\text{rg}(\text{d}f)=2 \quad \forall x\in\mathbb{R}^3
+        \end{align*}
+        also ist $f$ eine Abbildung von konstantem Rang..
+    \end{itemize}
+    Die Behauptung folgt dann wieder direkt aus dem Satz über Untermannigfaltigkeiten als Urbilder unter Abbildungen von konstantem Rang. Die Untermannigfaltigkeit hat demnach auch die behauptete Dimension $3-2=1$.
+\end{Beispiel}
+
+Und nun zum krönenden Abschluss die allgemeinen Mannigfaltigkeiten.
+\begin{Def}
+    {Allgemeine Mannigfaltigkeiten}
+    Gegeben seien ein metrischer Raum $M$, eine offene Überdeckung $(v_i)_{i\in I}$ von $M$ mit offenen Mengen $U_i \subseteq \mathbb{R}^m$ und Homöomorphismen 
+    \begin{equation*}
+        F_i:\, U_i\overset{\sim}{\rightarrow} V_i.
+    \end{equation*}
+    Man spricht dann von einer (abstrakten) m-dimensionalen $C^k$-Mannigfaltigkeit, wenn für je zwei offene Mengen $V_1,V_2\subseteq M$ mit Abbildungen $F_1$ und $F_2$ die Abbildung
+    \begin{equation*}
+        F_2^{-1}\circ F_1:\, F_1^{-1}(V_1\cap V_2) \rightarrow F_2^{-1}(V_1\cap V_2)
+    \end{equation*}
+    ein $C^k$-Diffeomorphismus ist.
+\end{Def}

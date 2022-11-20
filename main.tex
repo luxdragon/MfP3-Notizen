@@ -1,0 +1,64 @@
+\documentclass[a4paper,12pt]{scrartcl}
+\usepackage{a4wide}
+\usepackage[left=2cm, right=2cm, top=3cm]{geometry}
+\usepackage{graphics}
+\usepackage{mathtools}
+\usepackage{amsmath, amssymb} 
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{aligned-overset}  % Um bei Align die Gleichheitszeichen übereinander zu haben
+\usepackage[version=4]{mhchem}
+\usepackage{cancel}
+\usepackage{wrapfig}
+\usepackage{marvosym}
+\usepackage[headsepline]{scrlayer-scrpage}
+\usepackage{subcaption}
+\usepackage{tabularx}
+\usepackage{environ}
+\usepackage{natbib}
+\usepackage{tikzsymbols}
+\usepackage[skins, xparse, breakable]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{dsfont}
+\usepackage{pdfpages} % https://www.namsu.de/Extra/pakete/Pdfpages.html
+\allowdisplaybreaks  % Damit Align-Umgebungen umgebrochen werden können
+
+
+
+% Set to 1 (only selection) or 0 (full script)
+\newcounter{reduce_to_selection}
+\setcounter{reduce_to_selection}{0}
+% \setcounter{reduce_to_selection}{1}
+% \includeonly{Woche07}
+
+
+\newcommand{\Tipps}[2]{
+    \ifnum\value{reduce_to_selection}=1 {
+        \subsection{Tipps zu den Aufgaben von Blatt #1}
+        \Disclaimer{}\\
+        #2
+    }
+    \fi
+}
+
+
+\input{Dateien/custom_commands}
+
+
+\begin{document}
+\input{Dateien/title_page}
+
+
+\ifnum\value{reduce_to_selection}=0 {
+    \tableofcontents
+}\fi
+
+
+\include{0Wiederholung}
+\include{1Fourier_Reihen}
+
+
+\end{document}
