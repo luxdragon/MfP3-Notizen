@@ -25,7 +25,7 @@ $$\lim_{\epsilon\rightarrow a}\int_\epsilon^{b} f(x)dx$$ existiert, so nennen wi
 Betrachten wir $\int_0^1 \frac{1}{\sqrt{x}}dx$. Dieses Integral kann als uneigentliches integral sinnvoll definiert werden:
 $$\lim_{\epsilon\rightarrow 0}\int_\epsilon^1 \frac{1}{\sqrt{x}} dx =\lim_{\epsilon\rightarrow 0} [2\sqrt{x}]_\epsilon^1=\lim_{\epsilon\rightarrow 0}2\sqrt{1}-2\sqrt{\epsilon}=2$$
 \end{Beispiel}
-Die Gamma-Funktion $\Gamma(s)=\int_0^\infty t^{s-1}e^{-t}dt$ ist sehr nützlich, denn es gilt $\Gamma(s+1)=s\Gamma(s)$, also ist die Funktion perfekt dazu geeignet, um die Fakultät zu berechnen: $\Gamma(n)=(n-1)!$
+Die Gamma-Funktion $\Gamma(s)=\int_0^\infty t^{s-1}e^{-t}dt$ ist sehr nützlich, denn es gilt $\Gamma(s+1)=s\Gamma(s)$, also ist die Funktion perfekt dazu geeignet, um die Fakultät zu berechnen: $\Gamma(n)=(n-1)!$. Zusätzlich gilt $\Gamma(\frac{1}{2})=\sqrt{\pi}$.
 
 \subsection{Topologie und Untermannigfaltigkeiten}\label{ssec:Topologie}
 Gewisse topologische Begriffe sind auch im MfP3 sehr wichtig.
@@ -54,12 +54,18 @@ Falls wir zu \underline{jeder} offenen Überdeckung $(U_i)_{i\in I}$ von $A\subs
 {Folgerung}{Kompakte Teilmengen sind abgeschlossen und beschränkt}
 Jede kompakte Teilmenge $A\subseteq X$ eines metr. Raumes ist \underline{abgeschlossen}, \underline{vollständig} und \underline{beschränkt}.
 \end{Satz}
+\begin{Def}{Separable Räume und Dichtigkeit}
+    Die Metrik $(X,d)$ heißt separabel, falls es eine abzählbare dichte Teilmenge in $X$ gibt. \\
+    Eine Teilmenge $Y\subseteq X$ heißt dicht in $X$, wenn $\overline{Y}=X$.
+    $$\forall \epsilon>0 \forall x\in X \exists y\in Y: d(x,y) <\epsilon$$
+\end{Def}
 Jetzt gehen wir über zu Untermannigfaltigkeiten und schließen die Wiederholung mit allgemeinen Mannigfaltigkeiten ab.
 \begin{Def}
 {Immersion}
 Ist $\rg(f)=m\,\forall \pvec\in U$, d. h. die Abbildung hat den konstanten Rang der Dimension des \underline{Urbildraums}, so sagen wir, dass $f$ eine \red{Immersion} ist.\\
 Das Differential $df:U\to\mathbb{R}^n$ ist dann injektiv. 
 \end{Def}
+Die $C^k(I,\R)$ ist eine $k$-fach stetig differenzierbare Funktion.
 \begin{Def}
 {$C^k$-Diffeomorphismen}
 $C^k$-Abbildungen $f:U\to V$, die bijektiv sind und deren Umkehrabbildungen auch $C^k$ sind, nennen wir \red{$C^k$-Diffeomorphismen}.
