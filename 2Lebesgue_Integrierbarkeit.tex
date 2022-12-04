@@ -39,7 +39,7 @@ $$I(\Phi) = \sum_{k=1}^\infty c_k v(Q_k)$$
 \end{Def}
 
 \begin{Beispiel}{Folge von Hüllreihen}
-Seien $a, k\in \R$ und $f:\R\rightarrow\R$ definiert als $f(x)=\begin{cases}0, x\neq a && k, x=a\end{cases}$. Wir sollen zu dieser Funktion eine Folge von Hüllreihen, $\Phi_n$, konstruieren, die gegen Null konvergiert. \\
+Seien $a, k\in \R$ und $f:\R\rightarrow\R$ definiert als $f(x)=\begin{cases}0, x\neq a & k, x=a\end{cases}$. Wir sollen zu dieser Funktion eine Folge von Hüllreihen, $\Phi_n$, konstruieren, die gegen Null konvergiert. \\
 Wir wissen, dass $\Phi = \sum_{k=1}^\infty c_k 1_{Q_k}$, aber auch, dass $c_k=0$ für jeden Quader außer für die, in denen sich $a$ befindet (da ist $c_k=k$). Wir können Hüllen als Intervale bilden und bekommen die Hüllreihe:
 $$A_n=[a-\frac{1}{n}, a+\frac{1}{n}]$$
 Die Inhalte dieser Hüllreihe gehen gegen 0
@@ -49,10 +49,25 @@ $$\Phi_n=\sum_{n=1}^\infty A_n$$
 \red{muss noch verifiziert werden}
 \end{Beispiel}
 \begin{Beispiel}{Hüllreihe einer Funktion}
+Wir betrachten die Funktion 
+\begin{equation*}
+  f(x)=\begin{cases}
+    x & \mbox{wenn $x\in [0,1]$} \\
+    0 & \mbox{sonst}
+\end{cases}  
+\end{equation*}
+Dazu konstruieren wir eine Hüllreihe:
             \begin{center}
-    \includegraphics[width=0.80\textwidth]{Dateien/Robin_Hullreihen1.png}
-    \includegraphics[width=0.80\textwidth]{Dateien/Robin_Hullreihen2.png}
+    \includegraphics[width=0.80\textwidth]{Dateien/Hullreihe.png}
 \end{center}
+diese hat nun die Form $$\Phi_6(x)=\sum_{k=0}^{6-1}\frac{1}{6}\cdot 1_{[\frac{1}{6}k, 1]}$$ Lassen wir eine beliebige Anzahl $n$ an Quadern zu, gilt:
+$$\Phi_n(x)=\sum_{k=0}^{n-1}\frac{1}{n}1_{[\frac{1}{n}k, 1]}$$
+Der Inhalt ist dann
+$$I(\Phi_n)=\frac{1}{n}\sum_{k=0}^{n-1} 1 -\frac{1}{n}k=\frac{1}{n}\sum_{k=0}^{n-1} 1 - \frac{1}{n^2}\sum_{k=0}^{n-1} k$$
+$$=1-\frac{n-1}{2n}=\frac{1}{2}(1+\frac{1}{n})$$
+Für $n\rightarrow \infty$ folgt:
+$$I(\Phi_\infty)=\lim_{n\rightarrow\infty} \frac{1}{2}(1+\frac{1}{n})=\frac{1}{2}$$
+Also dem Flächeninhalt unter der Funktion f!
 \end{Beispiel}
 \begin{Def}{$L^1$-Halbnorm}
 Unter der \red{$L^1$-Halbnorm} von $f:\R^n\rightarrow\C\cup \{\infty\}$ versteht man das Infimum
@@ -126,10 +141,18 @@ $$=\int_J\int_I f(x,y) dx dy = \int_J h(y) dy$$
 \begin{Beispiel}{Anwendung vom Satz von Fubini}
 Wir wollen auch für eine kompliziertere Funktion, aber noch stets definiert auf einem Rechteck, die interierten Integrale berechnen. Dazu betrachten wir $R=(0,\frac{\pi}{2})\times (0,\frac{\pi}{2}$ und die Funktion $f:R\rightarrow \R$, die durch
 $$f(x)=\sin(x_1+2x_2), \mbox{ $x=(x_1,x_2)\in R$}$$
-gegeben ist.
-\begin{center}
-    \includegraphics[width=.6\textwidth]{Dateien/Fubini1.png}
-\end{center}
+gegeben ist. \\
+Zunächst berechnen wir
+$$\int_0^{\frac{\pi}{2}}\int_0^{\frac{\pi}{2}} \sin(x_1+2x_2)dx_2dx_1$$
+$$=\int_0^{\frac{\pi}{2}}[-\frac{1}{2}\cos(x_1+2x_2)]^{\frac{\pi}{2}}_{x_2=0}dx_1$$
+$$=\int_0^{\frac{\pi}{2}}(\frac{1}{2}\cos(x_1)-\frac{1}{2}\cos(x_1+\pi))dx_1$$
+$$=\int_0^{\frac{\pi}{2}}\cos(x_1)dx_1 = 1$$
+Nun vertauschen wir die Reihenfolge,
+$$\int_0^{\frac{\pi}{2}}\int_0^{\frac{\pi}{2}} \sin(x_1+2x_2)dx_1dx_2$$
+$$=\int_0^{\frac{\pi}{2}} [-\cos(x_1+2x_2)]^{\frac{\pi}{2}}_{x_1=0}dx_2$$
+$$=\int_0^{\frac{\pi}{2}} (\cos(2x_2)-\cos(2x_2+\frac{\pi}{2}))dx_2$$
+$$=[\frac{1}{2}\sin(2x_2)-\frac{1}{2}\sin(2x_2+\frac{\pi}{2})]_0^{\frac{\pi}{2}}$$
+$$=\frac{1}{2}(\sin(\pi)-\sin(\frac{3\pi}{2})-\sin(0)+\sin(\frac{\pi}{2})) = 1$$
 \end{Beispiel}
 \begin{Beispiel}{Fubini ist nicht immer anwendbar}
 \begin{center}
@@ -188,10 +211,10 @@ Eine Teilmenge $N\subseteq \R^n$ heißt Lebesgue-Nullmenge, wenn sie eine der be
 \end{itemize}
 \end{Def}
 \begin{Beispiel}{Nullmengen}
-Überlegen Sie sich einige Beispiele für Nullmengen im $\R^2$ und im $\R^3$.
-\begin{center}
-    \includegraphics[width=0.8\textwidth]{Dateien/Nullmengen.png}
-\end{center}
+Überlegen Sie sich einige Beispiele für Nullmengen im $\R^2$ und im $\R^3$. \\ \\
+In jedem Fall sind isolierte Punkte und abzählbare Vereinigungen von isolierten Punkten wie im eindimensionalen Nullmengen. Das bedeutet etwa, dass $\Q^2\subset \R^2$ oder $\Q^3 \subset \R^3$ Nullmengen sind. \\ \\
+Der Rand eines Quaders, im zweidimensionalen also der Rand eines Rechtecks, ist ebenfalls eine Nullmenge. Dasselbe gilt für abzählbare Vereinigungen solcher Ränder. \\ \\
+Als letztes Beispiel im $\R^2$ sei der Graph einer Funktion $f:\R\rightarrow \R$ gennant.
 \end{Beispiel}
 \begin{Def}{Fast überall}
 Sei $E(x)$ eine Eigenschaft, sodass wir für $\forall x \in \R^n$ wissen, ob die Eigenschaft $E(x)$ erfüllt ist. Wir sagen, dass $E(x)$ \red{fast überall} gilt, wenn die Menge aller Punkte, wo $E(x)$ nicht gilt, eine Nullmenge ist.
