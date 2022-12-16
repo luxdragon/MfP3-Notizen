@@ -1,5 +1,3 @@
-%%%%%%% Damit fangen wir nächste Woche an %%%%%%%%
-\newpage
 \newpage
 \section[Einführung in die Gebietsintegrale]{Mehrdimensionale Integrale}
 \subsection{Theoretisches Baukasten}
@@ -39,14 +37,18 @@ $$I(\Phi) = \sum_{k=1}^\infty c_k v(Q_k)$$
 \end{Def}
 
 \begin{Beispiel}{Folge von Hüllreihen}
-Seien $a, k\in \R$ und $f:\R\rightarrow\R$ definiert als $f(x)=\begin{cases}0, x\neq a & k, x=a\end{cases}$. Wir sollen zu dieser Funktion eine Folge von Hüllreihen, $\Phi_n$, konstruieren, die gegen Null konvergiert. \\
-Wir wissen, dass $\Phi = \sum_{k=1}^\infty c_k 1_{Q_k}$, aber auch, dass $c_k=0$ für jeden Quader außer für die, in denen sich $a$ befindet (da ist $c_k=k$). Wir können Hüllen als Intervale bilden und bekommen die Hüllreihe:
-$$A_n=[a-\frac{1}{n}, a+\frac{1}{n}]$$
+Seien $a, k\in \R$ und $f:\R\rightarrow\R$ definiert als $f(x)=\begin{cases}0, x\neq a \\ c, x=a\end{cases}$. Wir sollen zu dieser Funktion eine Folge von Hüllreihen, $\Phi_n$, konstruieren, die gegen Null konvergiert. \\ \\
+Wir wissen, dass $\Phi_{(n)}(x) = \sum_{k=1}^\infty c_k 1_{Q_k}$, aber auch, dass $c_k=0$ für jeden Quader außer für die, in denen sich $a$ befindet (da ist $c_k=c$). Wir können Hüllreihen auf Intervalen für $k,n\in \N$ bilden
+$$A_{n,k}=[a-\frac{1}{k\cdot 2^n}, a+\frac{1}{k\cdot 2^n}]$$
+$$\Phi_{(n)}(x)= 1_{A_{n,k}}(x)$$
+Betrachtet nun 
+$$I(\Phi_n)=\sum_{k=1}^\infty c_k v(Q_k) = 1\cdot v(A_n)$$
+Wir wissen, dass der Volumen des Intervals $$A_n=a+\frac{1}{k\cdot 2^n}-(a-\frac{1}{k\cdot 2^n})=\frac{2}{k\cdot 2^n}$$
+$$\Rightarrow I(\Phi_n)=\frac{2}{k\cdot 2^n}$$
 Die Inhalte dieser Hüllreihe gehen gegen 0
-$$\lim_{n\rightarrow\infty}I(A_n)=\lim_{n\rightarrow\infty} a+\frac{1}{n}-(a-\frac{1}{n})=\lim_{n\rightarrow\infty}\frac{2}{n}=0$$
+$$\lim_{n\rightarrow\infty}I(A_n)=\lim_{n\rightarrow\infty} a+\frac{1}{k\cdot 2^n}-(a-\frac{1}{k\cdot 2^n})=\lim_{n\rightarrow\infty}\frac{2}{k\cdot 2^n}=0$$
 Wir haben nun erfolgreich eine Folge von Hüllreihen konstruiert
-$$\Phi_n=\sum_{n=1}^\infty A_n$$
-\red{muss noch verifiziert werden}
+$$\Phi_n=(\sum_{k=1}^\infty 1_{A_{n,k}})_n \quad \mbox{für $A_{n,k}=[a-\frac{1}{k\cdot 2^n}, a+\frac{1}{k\cdot 2^n}]$}$$
 \end{Beispiel}
 \begin{Beispiel}{Hüllreihe einer Funktion}
 Wir betrachten die Funktion 
@@ -139,7 +141,7 @@ $$=\int_J\int_I f(x,y) dx dy = \int_J h(y) dy$$
     Eine nützliche Integrationsregel \red{$\int \sqrt{a^2-x^2}=\frac{1}{2}(a^2\sin^{-1}(\frac{x}{a})+x\sqrt{a^2-x^2})+c$}.
 \end{Beispiel}
 \begin{Beispiel}{Anwendung vom Satz von Fubini}
-Wir wollen auch für eine kompliziertere Funktion, aber noch stets definiert auf einem Rechteck, die interierten Integrale berechnen. Dazu betrachten wir $R=(0,\frac{\pi}{2})\times (0,\frac{\pi}{2}$ und die Funktion $f:R\rightarrow \R$, die durch
+Wir wollen auch für eine kompliziertere Funktion, aber noch stets definiert auf einem Rechteck, die interierten Integrale berechnen. Dazu betrachten wir $R=(0,\frac{\pi}{2})\times (0,\frac{\pi}{2})$ und die Funktion $f:R\rightarrow \R$, die durch
 $$f(x)=\sin(x_1+2x_2), \mbox{ $x=(x_1,x_2)\in R$}$$
 gegeben ist. \\
 Zunächst berechnen wir
@@ -199,8 +201,14 @@ $$v(A)=v_n(A)=\int_A 1dx$$
 Eine Vereinigung endlich vieler Quader $Q_i\subseteq \R^n$ der Form $A=Q_1\cup Q_2 \cup \dots \cup Q_s$ heißt \red{Figur}. \\
 Eine \red{Ausschöpfung} von $A$ ist eine aufsteigende Folge von Teilmengen $A_1\subseteq A_2 \subseteq \cdots \subseteq A$.
 \end{Def}
-\begin{Beispiel}{Volumen von Kegeln}
-WIP
+\begin{Beispiel}{Volumina von Kegeln}
+Wir sollen das Volumen des Kegels
+$$K=\{(x,y)\in \R^n | y\in [0,h], x\in (1-\frac{y}{h})B\}$$
+mit kompakter Basis (das ist die Fläche des Kegels ganz unten) $B\subseteq \R^{n-1}$ und Höhe $h>0$ bestimmen. Da wir in 3D arbeiten ist unser $n=3$.
+$$v_n(K)=\int_0^k v_{n-1} ((1-\frac{y}{h})B)dy$$
+An dieser Stelle ist es wichtig die \red{Streckungsformel} zu kennen
+\blue{$$\int_{\R^n} (s_1x_1, \dots, s_nx_n)dx=s_1^{-1}s_2^{-1}\dots s_n^{-1}\int_{\R^n}f(x)dx$$}
+$$v_n(K)=\int_0^h v_{n-1}(B)(1-\frac{y}{h})^{n-1}dy=B\int_0^h (1-\frac{y}{h})^2 dy=\frac{B\cdot h}{3}$$
 \end{Beispiel}
 Und nun eins der wichtigsten Definitionen im MfP3.
 \begin{Def}{Nullmenge}
@@ -380,7 +388,7 @@ Beachtet, dass der $\mathcal{L}^1$- Grenzwert nicht eindeutig ist, aber es kann 
         \item $f_k$ konvergiere punktweise gegen $f(x)=\lim_{k\rightarrow \infty} f_k(x)$
         \item Die Folge $\int f_k dx$ der Integrale ist beschränkt.
     \end{itemize}
-    Dann folgt, dass $f$ integrierbar ist und dass $\int f dx = \lim_{k\rightarrow \infty} \int f_k dx$
+    Dann folgt, dass $f$ integrierbar ist und dass $\lim_{k\rightarrow \infty} \int f_k dx=\int f dx$
 \end{Satz}
 \begin{Satz}{Satz}{Satz von Lebesgue von der majorisitierten Konvergenz}
     Voraussetzungen:
@@ -389,7 +397,7 @@ Beachtet, dass der $\mathcal{L}^1$- Grenzwert nicht eindeutig ist, aber es kann 
         \item $f_k$ konvergiert fast überall punktweise gegen eine Funktion $f$
         \item Es gibt eine integrierbare Majorante $F$ mit $|f_k|\leq F$ für $\forall k$.
     \end{itemize}
-    Dann folgt, dass $f$ integrierbar ist und dass $\int f dx = \lim_{k\rightarrow \infty} \int f_k dx$
+    Dann folgt, dass $f$ integrierbar ist und dass $\lim_{k\rightarrow \infty} \int f_k dx = \int f dx$
 \end{Satz}
 \begin{Beispiel}{Satz von integrierbaren Majoranten angewandt}
     Wir betrachten die Funktion
@@ -404,9 +412,31 @@ Beachtet, dass der $\mathcal{L}^1$- Grenzwert nicht eindeutig ist, aber es kann 
     $$\lim_{n\rightarrow \infty} \int_\R \delta_n(x) dx = 1 \mbox{ und } \int_\R \delta(x)dx = 0$$
 \end{Beispiel}
 \begin{Beispiel}{Und noch ein Beispiel}
-    \begin{center}
-    \includegraphics[width=0.80\textwidth]{Dateien/Beppo_Levi_Beispiel.png}
-\end{center}
+Wir betrachten das Integral
+$$\lim_{n\rightarrow \infty}\int_0^\infty (1+\frac{x}{n})^n\cos(\frac{x}{n})e^{-2x}dx$$
+Die Funktionenfolge, die wir dafür untersuchen müssen, ist
+$$f_n(x)=(1+\frac{x}{n})^2n\cos(\frac{x}{n})e^{-2x}$$
+Aus MfP1 wissen wir, dass
+$$(1+\frac{x}{n})^n \mbox{ wächst monoton, } \lim_{n\rightarrow \infty}(1+\frac{x}{n})^n=e^x$$
+wir gehen nun schrittweise vor: \begin{enumerate}
+    \item \blue{$f_n(x)$ ist eine Folge integrierbarer Funktionen, denn} \\
+    \begin{itemize}
+        \item $f_n(x)$ ist steig und daher lokal-integrierbar über die $\sigma$-kompakte Menge $(0,\infty)$.
+        \item $f_n(x)$ hat die über $(0,\infty)$ integrierbare Majorante
+        $$|(1+\frac{x}{n})^n\cos(\frac{x}{n})e^{-2x}|<e^xe^{-2x}=e^{-x}$$
+        denn $$\int_0^\infty e^{-x}= 1$$
+        \item $f_n(x)$ ist damit auch über $(0,\infty)$ integrierbar.
+    \end{itemize}
+    \item \blue{$f_n(x)$ konvergiert fast überall punktweise} \\
+    Es gilt $$\lim_{n\rightarrow \infty} (1+\frac{x}{n})^n\cos(\frac{x}{n})e^{-2x}$$
+    $$=e^{-2x}\lim_{n\rightarrow \infty} (1+\frac{x}{n})^n \cdot \lim_{n\rightarrow \infty} \cos(\frac{x}{n})$$
+    $$=e^{-2x}\cdot e^x=e^{-x}$$
+    Die Grenzfunktion ist also $f(x)=e^{-x}$.
+    \item \blue{$f_n(x)$ hat eine integrierbare Majorante} \\
+    Die haben wir mit $f(x)=e^{-x}$ schon gefunden.
+\end{enumerate}
+Nun können wir den Satz von Lebesgue von der majorisierten Konvergenz anwenden und Integral und Limes vertauschen:
+$$\lim_{n\rightarrow \infty} \int_0^\infty (1+\frac{x}{n})^n\cos(\frac{x}{n})e^{-2x}dx = \int_0^\infty e^{-x} = 1$$
 \end{Beispiel}
 \newpage
 \subsection{Parameterabhängige Integrale}
@@ -427,7 +457,7 @@ Daraus folgt, dass $f'$ Lebesgue-integrierbar ist über $[x_0, x]$ und dass $$f(
         \item Für feste $t$ ist die Funktion $x\longmapsto f(x,t)$ stetig
         \item Es gibt eine integrierbare Majorante $\Phi: T\rightarrow \R$, sodass $|f(x,t)|\leq \Phi(t)$ für $\forall (x,t)\in X\times T$.
     \end{itemize}
-    Daraus folgt, dass $F(x)=\int_T f(x,t)dt$ ist auf $X$ stetig.
+    Daraus folgt, dass $F(x)=\int_T f(x,t)dt$ auf $X$ stetig ist.
 \end{Satz}
 \begin{Satz}{Satz}{Differentiationssatz}
         Voraussetzungen:
@@ -446,62 +476,100 @@ Daraus folgt, dass $f'$ Lebesgue-integrierbar ist über $[x_0, x]$ und dass $$f(
     \end{itemize}
 \end{Satz}
 \begin{Beispiel}{Fourier-Transformation}
-        \begin{center}
-    \includegraphics[width=0.80\textwidth]{Dateien/Fourier_Transform_1.png}
-    \includegraphics[width=0.80\textwidth]{Dateien/Fourier_Transform_2.png}
-    \includegraphics[width=0.80\textwidth]{Dateien/Fourier_Transform_3.png}
-\end{center}
+Die \red{Fourier-Transformierte} ist definiert durch:
+$$\hat{f}(x)=\frac{1}{\sqrt{2\pi}}\int_{\R} f(t)e^{-ixt}dt$$
+wobei $f$ eine integrierbare Funktion ist. Wir überprüfen $\hat{f}(x)$ zunächst auf Stetigkeit: \\
+\begin{enumerate}
+    \item $t\mapsto f(t)e^{-ixt}$ ist für feste $x$ über $\R$ integrierbar? \\
+    \blue{Ja, denn $|f| = |e^{-ixt}f(t)|$ ist eine integrierbare Majorante.}\\
+    \item Für feste $t$ ist $x\mapsto f(t)e^{-ixt}$ stetig?\\
+    \blue{Ja klar! $f(t)$ ist fest und $e^z$ ist immer stetig.} \\
+    \item Gibt es eine integrierbare Majorante? \\
+    \blue{Ja, nämlich $\Phi(t)=|f(t)|$.}\\
+\end{enumerate}
+Somit ist $\hat{f}$ tatsächlich stetig. Wir setzten nun $f(t)=e^{-\frac{t^2}{2}}\Rightarrow \hat{f}(x)=\frac{1}{\sqrt{2\pi}}\int_{\R} e^{-\frac{t^2}{2}}e^{-ixt}dt$.
+Zunächst formen wir den Exponenten etwas um: \\
+$$-\frac{t^2}{2}-ixt=-\frac{1}{2}(t+ix)^2-\frac{x^2}{2}$$
+So erhalten wir das Integral:
+$$\hat{f}(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}\int_{\R} e^{-\frac{1}{2}(t+ix)^2}dt$$
+Nun können wir den Differentationssatz anwenden. Dazu schränken wir ohne Beschränkung der Allgemeinheit den Definitionsbereich von $x$ auf das offene Intervall $(-a,a)$ ein.
+$$F_a(x)=\int_{\R}e^{-\frac{1}{2}(t+ix)^2}dt \quad x\in(-a,a)\quad a\in\R$$
+\begin{enumerate}
+    \item Ist $t\mapsto e^{-\frac{1}{2}(t+ix)^2}$ integrierbar? \\
+    \blue{Wir finden die integrierbare Majorante $|e^{-\frac{1}{2}(t+ix)^2}|=|e^{-\frac{1}{2}t^2+\frac{1}{2}x^2-ixt}| =e^{\frac{1}{2}x}e^{-\frac{1}{2}t^2}=\Phi(t)$} \\
+    \item Ist $x\mapsto e^{-\frac{1}{2}(t+ix)^2}$ stetig differenzierbar?\\
+    \blue{ja klar! Es gilt $\frac{\partial}{\partial x}e^{-\frac{1}{2}(t+ix)^2}=-i(t+ix)e^{-\frac{1}{2}(t+ix)^2}$} \\
+    \item Gibt es eine integrierbare Majorante von $\frac{\partial}{\partial x}e^{-\frac{1}{2}(t+ix)^2}$? \\
+    \blue{$|\frac{\partial}{\partial x}e^{-\frac{1}{2}(t+ix)^2}|\leq (|t|+a)e^{-\frac{1}{2}t^2}e^{\frac{1}{2}a^2}$} \\
+\end{enumerate}
+Wir können nun den Differentationssatz anwenden:
+\blue{$$\frac{dF_a}{x}=\int_{\R}\frac{\partial}{\partial x} e^{-\frac{1}{2}(t+ix)^2}dt$$
+$$=\lim_{b\rightarrow \infty} ie^{-\frac{1}{2}(t+ix)^2}|_{-b}^{b}=0$$}
+Bisher haben wir uns nur auf das Intervall $x\in(-a,a)$ eingeschränkt. Wir können aber problemlos schreiben:
+\blue{$$\frac{\partial F}{\partial x}=\lim_{a\rightarrow \infty} \frac{\partial F_a}{\partial x}=\lim_{a\rightarrow \infty} 0 = 0$$}
+Somit ist $F(x)=F(0)=const.$ und wir können rechnen:
+\blue{$$F(x)=F(0)=\int_{\R}e^{-\frac{1}{2}t^2}dt=\sqrt{2\pi} \quad \mbox{(Gauß-Integral)}$$ }
+Jetzt können wir die Fourier-Transformierte ausrechnen:
+\blue{$$\hat{f}(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}^2}f(x)=e^{-\frac{1}{2}x^2}$$}
+Also sind $\hat{f}(x)$ und $f(t)$ die gleichen Funktionen! Dies ist eine ganz wichtige Feststellung, die z.B. bei der Unschärferelation der Quantenmechanik wichtig wird.
 \end{Beispiel}
 \newpage
 Aus all diesen Sätzen kommt nun der Höhepunkt der Integrationstheorie. Die folgenden zwei Sätze sind von enormer bedeutung in der Physik, also merkt sie euch. 
 \begin{Satz}{Satz}{Satz von Tonelli}
     Vorausgesetzt $f:\R^p\times \R^q \rightarrow \C$ ist fast überall stetig oder lokal integrierbar. Dann gilt die folgende Äquivalenz
-    $$\int_{\R^q}(\int_{\R^p} |f(x,y)|dx)dy \quad\mbox{oder}\quad\int_{\R^p}(\int_{\R^q} |f(x,y)|dx)dy\mbox{ existiert} $$
+    $$\int_{\R^q}(\int_{\R^p} |f(x,y)|dx)dy \quad\mbox{oder}\quad\int_{\R^p}(\int_{\R^q} |f(x,y)|dy)dx\mbox{ existiert} $$
     $$\iff \mbox{$f$ ist über $\R^p\times\R^q$ integrierbar}$$
 \end{Satz}
 \begin{Satz}{Satz}{Transformationssatz}
-    Voraussetzung:
-    \begin{itemize}
-        \item $U,V\subseteq \R^n$ offen
-        \item $T: U\rightarrow V$ ist ein Diffeomorphismus
-        \end{itemize}
-        Daraus folgen
-    \begin{itemize}
-            \item die Äquivalenz $f:V\rightarrow \C\cup\{\infty\}$ integrierbar $\iff f\circ T\cdot |\det(dT)|$ integrierbar
-            \item $\int_u f(T(x))|\det(dT)|dx=\int_V f(y)dy$
-        \end{itemize}
-    
+Seien $B,D\in\R^n$ offen und $\psi: B\rightarrow D$ ein Diffeomorphismus. Eine Funktion $f: D\rightarrow \R$ ist genau dann über $D$ integrierbar, wenn $f(\psi(x))\cdot|\det(d\psi)|$ über $B$ integrierbar ist, und es gilt:
+$$\int_D f(x) dx = \int_B f(\psi(y))\cdot|\det(d\psi(y))|dy$$
 \end{Satz}
 Zur Erinnerung die definition der allgemeinen linearen Gruppe: $$GL(n,\R)=\{A\in \mbox{Mat}(n,\R)| \det(A)\neq0\}$$
 Außerdem nicht vergessen, dass der Betrag der Determinante einer Matrix das gerichtete Volumen eines Parallelepipeds darstellt.
-\begin{Def}{Affine Transformationen}
-    Voraussetzung:
-    \begin{itemize}
-        \item $T:\R^n\rightarrow \R^n$, $T(x)=Ax+b$ mit $A\in GL(n,\R), b\in \R^n$
-        \item $f:K\rightarrow \C$ ist über $K\subseteq \R^n$ integrierbar
-    \end{itemize}
-    Daraus folgen
-    \begin{itemize}
-        \item $dT=A \Rightarrow \det(dT)=\det(A)\in \R/\{0\}$
-        \item $f\circ T$ ist über $T^{-1}(K)$ integrierbar
-        \item Es gilt $\int_{T^{-1}(K)} f(T(x)) dx = \frac{1}{|\det(A)|}\int_K f(y) dy$.
-    \end{itemize}
-\end{Def}
-\begin{Beispiel}{Präsenzaufgabe 1 aus dem Blatt 6}
-    \red{WIP}
+\begin{Beispiel}{Präsenzaufgabe 1 aus dem Übungsblatt 7}
+    Wir mussten, für $a,b>0$, den Flächeninhalt einer Ellipse mit dem Transformationssatz bestimmen.
+    $$E=\{(x,y)| \frac{x^2}{a^2}+\frac{y^2}{b^2} \leq 1\}$$
+    Da die Kugel als $B_1(0)=\{(x,y)| x^2+y^2 \leq 1\}$ definiert ist, ist es sinnvoll die Abbildung $\psi(x,y)=(\frac{x}{a}, \frac{y}{b})$ zu wählen (dies ist auch ein \blue{Diffeomorphismus}).
+    $$d\psi(x,y)=\begin{pmatrix}
+        \frac{1}{a} & 0 \\
+        0 & \frac{1}{b}
+    \end{pmatrix}$$
+    $$\det(d\psi(x,y))=\frac{1}{ab}$$
+    Wir wissen, dass $v(B_1(0))=\int_{B_1(0)} 1dx = \pi$ also können wir die Gleichung aufstellen:
+    $$\int_{B_1(0)}1 dx = \int_E \frac{1}{ab}\cdot 1 dy$$
+    $$\int_{B_1(0)}1 dx = \frac{1}{ab}\int_E 1 dy$$
+    $$\int_E 1 dy = ab\pi$$
 \end{Beispiel}
-\begin{Beispiel}{Bestimmung eines uneigentlichen Integrals}
+\begin{Beispiel}{Bestimmung eines uneigentlichen 3D-Integrals}
     \begin{center}
     \includegraphics[width=0.95\textwidth]{Dateien/Uneigentlich_e_hoch_x_quadrat.png}
 
 \end{center}
 \end{Beispiel}
 \begin{Beispiel}{Transformationssatz im Einsatz}
+Das Integral $$\int_D \sqrt{x_1}x_2 dx$$ mit $$D=\{ x\ \in\R^2 | x_1, x_2 >0, \sqrt{x_1}<x_2<2\sqrt{x_1}, \frac{1}{x_1}<x_2<\frac{2}{x_1}\}$$
+soll berechnet werden. Das Gebiet $D$ ist auf dem Bild zu sehen. \\
             \begin{center}
-    \includegraphics[width=0.52\textwidth]{Dateien/Transformationssatz1.png}
-    \includegraphics[width=0.52\textwidth]{Dateien/Transformationssatz2.png}
-    \includegraphics[width=0.52\textwidth]{Dateien/Transformationssatz3.png}
+    \includegraphics[width=0.50\textwidth]{Dateien/Transformationssatz.png}
 \end{center}
+Um eine geeignete Transformation zu finden, betrachten wir die Bedingungen in der Definition von $D$ genauer. Sie lassen sich umschreiben zu
+$$1<\frac{x_2}{\sqrt{x_1}}<2 \mbox{ und } 1<x_1x_2<2$$
+Es liegt daher nahe, als neue Koordinaten $u_1=x_1x_2$ und $u_2=\frac{x_2}{\sqrt{x_1}}$ zu wählen. Umgekehrt hat man dann
+$$x=\psi(u)=\begin{pmatrix}
+    u_1^{\frac{2}{3}} & u_2^{-\frac{2}{3}} \\
+    u_1^{\frac{1}{3}} & u_2^{\frac{2}{3}}
+\end{pmatrix} \mbox{, $1<u_1, u_2 < 2$.}$$
+Da man die Darstellung von $u$ durch $x$ und umgekehrt äquivalent in einander umformen kann, ist diese Transformation bijektiv. Als Funktionaldeterminante ergibt sich
+$$\det \psi '(u)=\det \begin{pmatrix}
+    \frac{2}{3}u_1^{{-\frac{1}{3}}}u_2^{-{\frac{2}{3}}} & -\frac{2}{3}u_1^{\frac{2}{3}}u_2^{-{\frac{5}{3}}} \\
+    \frac{1}{3}u_1^{-{\frac{2}{3}}}u_2^{\frac{2}{3}} & {\frac{2}{3}}u_1^{\frac{1}{3}}u_2^{-\frac{1}{3}}
+\end{pmatrix}=\frac{4}{9}u_2^{-1}+\frac{2}{9}u_2^{-1}=\frac{2}{3u_2}$$
+Die Determinante ist daher stets positiv. Wir können nun die Transformationsformel anwenden und erhalten mit $B=(1,2)\times(1,2)$.
+$$\int_D \sqrt{x_1}x_2 dx = \int_B u_1^{\frac{1}{3}}u_2^{-\frac{1}{3}}u_1^{\frac{1}{3}}u_2^{\frac{2}{3}}\frac{2}{3u_2}du$$
+$$=\frac{2}{3}\int_1^2 \int_1^2 u_1^{\frac{2}{3}}u_2^{-\frac{2}{3}}du_1du_2$$
+$$=\frac{2}{5}(\sqrt[3]{32}-1)\int_1^2 u_2^{-{\frac{2}{3}}}du_2=\frac{6}{5}(\sqrt[3]{32}-1)(\sqrt[3]{2}-1)$$
+$$=\frac{6}{5}(5-\sqrt[3]{32}-\sqrt[3]{2})$$
+
 \end{Beispiel}
 \newpage
 \subsection{Exkurs: Wichtige Koordinatensysteme}
@@ -518,10 +586,16 @@ Ist $D\subseteq \R^2, f\in L(D)$ und $B$ die Beschreibung von $D$ durch Polarkoo
 $$\int_D f(x_1,x_2)d(x_1,x_2) = \int_B f(r\cos(\varphi), r\sin(\varphi))rd(r, \varphi)$$
 \end{Def}
 \begin{Beispiel}{Integration mit Polarkoordinaten}
-\begin{center}
-    \includegraphics[width=0.52\textwidth]{Dateien/Polarkoord1.png}
-    \includegraphics[width=0.52\textwidth]{Dateien/Polarkoord2.png}
-\end{center}
+Berechnen wir das Integral $$\int_D x(x^2+y)d(x,y)$$
+mit $D=\{ x\in \R^2 | x>0, 1<x^2+y^2<4\}$. Wir wollen dies mit Polarkoordinaten ausrechnen. Wir drücken $D$ aus durch
+$$D=\{ (r\cos(\varphi), r\sin(\varphi))^T \in \R^2 | -\frac{\pi}{2}<\varphi<\frac{\pi}{2}, 1<r<2 \}$$
+Das Gebiet $B$ aus dem Transformationssatz ist also genau das Rechteck
+$$B=\{ (r,\varphi) \in \R^2 | -\frac{\pi}{2}<\varphi<\frac{\pi}{2}, 1<r<2 \}$$
+Damit ergibt sich:
+$$\int_D x(x^2+y)d(x,y)=\int_B (r^3\cos^3(\varphi)+r^2\cos(\varphi)\sin(\varphi))rd(r,\varphi)$$
+$$=\int_1^2\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} (r^4\cos^3(\varphi)+r^3\cos(\varphi)\sin(\varphi)) d\varphi dr$$
+$$=\int_1^2 [\frac{r^4}{3}\sin(\varphi)\cos^2(\varphi)+\frac{2r^4}{3}\sin(\varphi)+\frac{r^3}{2}\sin^2(\varphi)_{-\frac{\pi}{2}}]^{\frac{\pi}{2}}dr$$
+$$=\int_1^2 \frac{4}{3}r^4 dr = [\frac{4}{15}r^5]_1^2=\frac{124}{15}$$
 \end{Beispiel}
 
 Für das \red{Zylinderkoordinatensystem} gelten die folgenden Gleichungen:
@@ -538,10 +612,11 @@ Ist $D\subseteq \R^3, f\in L(D)$ und $B$ die Beschreibung von $D$ durch Polarkoo
 $$\int_D f(x_1,x_2,x_3)d(x_1,x_2,x_3) = \int_B f(\rho\cos(\varphi), \rho\sin(\varphi),z)\rho d(\rho, \varphi, z)$$
 \end{Def}
 \begin{Beispiel}{Integration mit Zylinderkoordinaten}
-    \begin{center}
-    \includegraphics[width=1.0\textwidth]{Dateien/Zylinderkoord1.png}
-    \includegraphics[width=0.7\textwidth]{Dateien/Zylinderkoord2.png}
-\end{center}
+Bestimmen wir nochmal das Volumen eines Kegels, aber diesmal mit Zylinderkoordinaten. $$K=\{(\rho \cos(\varphi), \rho \sin(\varphi), z)^T| 0<z<h, 0<\rho<R(1-\frac{z}{h}), -\pi <\varphi < \pi\}$$ Die Menge der Trupel $(\rho, \varphi, z)$, die einen Punkt in $K$ in Zylinderkoordinaten darstellen, nennen wir $B$. Damit ergibt sich
+$$v_n(K)=\int_K 1 dx=\int_B \rho d(\rho, \varphi, z)$$
+$$=\int_0^h\int_0^{R(1-\frac{z}{h}}\int_{-\pi}^{\pi} \rho d\varphi d\rho dz$$
+$$=2\pi \int_0^h \frac{R^2}{2}(1-\frac{z}{h})^2dz=\pi R^2 [-\frac{h}{3}(1-\frac{z}{h})^3]_0^h$$
+$$=\frac{1}{3}\pi R^2 h$$
 \end{Beispiel}
 Zum guten Letzt gelten für das \red{Kugelkoordinatensystem} die folgenden Gleichungen:
 $$x_1=r\cos(\varphi)\sin(\theta)$$
@@ -557,7 +632,14 @@ Ist $D\subseteq \R^3, f\in L(D)$ und $B$ die Beschreibung von $D$ durch Polarkoo
 $$\int_D f(x_1,x_2,x_3)d(x_1,x_2,x_3) = \int_B f(r \cos(\varphi)\sin(\theta), r \sin(\varphi)\sin(\theta),r \cos(\theta))r^2\sin(\theta) d(r, \varphi, \theta)$$
 \end{Def}
 \begin{Beispiel}{Integration mit Kugelkoordinaten}
-        \begin{center}
-    \includegraphics[width=0.7\textwidth]{Dateien/Kugelkoord.png}
-\end{center}
+Bestimmen wir das Volumen einer Kugel.
+$$K=\{x\in\R^3 | x^2+y^2+z^2\leq \R^2\}$$
+$$=\{r (\cos(\varphi)\sin(\theta), \sin(\varphi)\sin(\theta),\cos(\theta))^T\in\R^3 | (r,\varphi, \theta)^T\in B \}$$
+mit dem Quader
+$$B=(0,R)\times(-\pi, \pi)\times (0, \pi)$$
+Das Volumen der Kugel ergibt sich dann als
+$$v_n(K)=\int_K 1 dx = \int_B r^2\sin(\theta) d(r,\varphi, \theta)$$
+$$=\int_0^R\int_{-\pi}^\pi \int_0^\pi r^2 \sin(\theta) d\theta d\varphi dr$$
+$$=2\pi \int_0^R r^2(\cos(0)-\cos(\pi))dr$$
+$$=4\pi [\frac{1}{3}r^3]_0^R = \frac{4}{3}\pi R^3$$
 \end{Beispiel}

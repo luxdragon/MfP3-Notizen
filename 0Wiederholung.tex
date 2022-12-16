@@ -75,7 +75,7 @@ $C^k$-Abbildungen $f:U\to V$, die bijektiv sind und deren Umkehrabbildungen auch
 Die Abbildung $f:\mathbb{R}\to\mathbb{R}_+\setminus\MengeDirekt{0},\,f(x)=e^x$ ist mit $f^{-1}:\mathbb{R}_+\setminus\MengeDirekt{0}\to\mathbb{R},\,f^{-1}(x)=\ln(x)$ ein Diffeomorphismus, denn beide sind stetig differenzierbar, bijektiv und\\
 $(f\circ f^{-1}=\Id_{\mathbb{R}_+\setminus\MengeDirekt{0}})\land (f^{-1}\circ f=\Id_\mathbb{R}).\,\checkmark$
 \end{Beispiel}
-Eine wichtige Eigenschaft von Diffeomorphisem ist, dass sie homoömorph sind.
+Eine wichtige Eigenschaft von Diffeomorphisem ist, dass sie homöomorph sind.
 \begin{Def}
 {Untermannigfaltigkeit}
 Wir nennen eine Teilmenge $M\subseteq\mathbb{R}^n$ eine \red{$m$-dimensionale Untermannigfaltigkeit}, falls für jeden der Punkte $\pvec\in M$ die folgenden Eigenschaften erfüllt sind:
@@ -89,6 +89,19 @@ Wir nennen eine Teilmenge $M\subseteq\mathbb{R}^n$ eine \red{$m$-dimensionale Un
 Zweidimensionale Untermannigfaltigkeiten des $\mathbb{R}^n$ nennen wir \red{Flächen}.\\
 $(n-1)$-dimensionale Untermannigfaltigkeiten des $\mathbb{R}^n$ nennen wir \red{Hyperflächen}.
 \end{Def}
+\begin{Def}
+{Lokale Parametrisierung}
+Eine solche Abbildung (also $F:U\overset{\sim}{\to}F(U)\subseteq M$) nennen wir eine \red{lokale Parametrisierung} oder auch \red{Karte} der Umgebung $F(U)\subseteq M$ des Punktes $\pvec$.
+\end{Def}
+\begin{Beispiel}
+    {Karte eines Funktionsgraphen}
+    Sei $f: U\subseteq\mathbb{R}^n\rightarrow\mathbb{R}$ eine $C^k$-Funktion mit $k\geq 1$. Dann ist $F:U\subseteq\mathbb{R}^n\rightarrow\mathbb{R}^{n+1}, F(x)=(x,f(x))$ eine Immersion, denn
+    \begin{equation*}
+        \text{d}F_x=\Matrix{1 & \ldots & 0 \\ \vdots & \ddots & \vdots \\ 0 & \ldots & 1 \\ \partial_1 f(x) & \ldots & \partial_n f(x)} \quad \Rightarrow \quad \text{rg}(\text{d}F_x) = n
+    \end{equation*}
+    hat konstanten Rang $n$. Das Bild von $F$ ist der Graph $\Gamma_f$ von $f$. \\
+    Es gibt offensichtlich eine Umkehrfunktion $F^{-1}:\,\Gamma_f\rightarrow\mathbb{R}\quad(x,f(x))\mapsto x$. Sowohl $F$ als auch $F^{-1}$ sind per Definition von $f$ stetig, sodass $F$ ein waschechter Homöomorphismus ist.
+\end{Beispiel}
 \begin{Satz}
 {Satz}{Untermannigfaltigkeiten als Urbilder unter Abbildungen von konstantem Rang}
 Sei $U\subseteq\mathbb{R}^n$ offen und $f:U\to\mathbb{R}^m$.
@@ -128,6 +141,29 @@ so ist das Urbild\footnote{also alle Punkte, die auf $\qvec$ abgebildet werden} 
     \end{itemize}
     Die Behauptung folgt dann wieder direkt aus dem Satz über Untermannigfaltigkeiten als Urbilder unter Abbildungen von konstantem Rang. Die Untermannigfaltigkeit hat demnach auch die behauptete Dimension $3-2=1$.
 \end{Beispiel}
+\begin{Def}
+{Tangentialvektoren und Tangentialraum}
+Für eine $C^1$-Untermannigfaltigkeit $M\subseteq\mathbb{R}^n$ nennen wir für einen Punkt $\pvec\in M$ gelegte Vektoren $\vvec\in\mathbb{R}^n$ \red{Tangentialvektoren}, wenn
+\begin{itemize}
+    \item es $\epsilon>0$ und eine stetig differenzierbare Kurve $\gamma:(-\epsilon,\epsilon)\to M$ gibt, welche
+    \begin{itemize}
+        \item durch den Punkt $\pvec$ verläuft, also $\gamma(0)=\pvec$ und
+        \item für die $\vvec=\gamma'(0)$ gilt.
+    \end{itemize}
+\end{itemize}
+Die Menge aller Tangentialvektoren an die Untermannigfaltigkeit $M$ im Punkt $\pvec$ nennen wir \red{Tangentialraum} in $\pvec$.\\
+Wir schreiben auch $T_\pvec M$.
+\end{Def}
+\begin{Satz}
+{Satz}{Eigenschaften des Tangentialraums}
+Für den Tangentialraum $T_\pvec M$ an einer UMF $M$ im Punkt $\pvec$ gilt:
+\begin{itemize}
+    \item $T_\pvec M$ ist ein Vektorraum mit $\dim (T_\pvec M)=m=\dim M$.
+    \item Falls wir mit $F:U\to V$ eine lokale Parametrisierung von $M$ haben, sodass $F(\uvec)=\pvec$ ist ($\uvec\in U$),\\
+    dann bilden die Vektoren $\partial_1F(\uvec),\ldots,\partial_mF(\uvec)$ eine Basis des Tangentialraums.
+\end{itemize}
+\end{Satz}
+Den Tangentialraum können wir uns für einen Punkt $\pvec$ an einer Kugel $M$ als Ebene vorstellen, die an diesen Punkt angelegt wird.\\
 
 Und nun zum krönenden Abschluss die allgemeinen Mannigfaltigkeiten.
 \begin{Def}
