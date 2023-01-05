@@ -10,14 +10,14 @@ Das Tensorprodukt verknüpft auf charakteristische Weise zwei Vektorräume mitei
     wobei $X$ ein Vektorraum ist. \\ \\
     Das \red{Tensorprodukt} kann man sich einfach als eine neue Verknüpfung zwischen Vektorräumen vorstellen. Sie ist definiert über die universelle Eigenschaft:
     \begin{center}
-    \includegraphics[width=0.3\textwidth]{Dateien/Tensor1.png}
+    \includegraphics[width=0.3\textwidth]{Dateien/Tensor1.pdf}
 \end{center}
 wobei $V\otimes W$ der Tensorproduktraum ist. Diese Definition hat folgende Vorteile: \\
 \begin{enumerate}
     \item Jeder bilinearen Abbildung $\alpha$ kann genau eine Lineare Abbildung $\Phi_\alpha$ zugeordent werden.
     \item Der Tensorproduktraum ist bis auf Isomorphie eindeutig. Seien nämlich zwei Räume $V\otimes W$ und $V\Tilde{\otimes}W$ gegeben, dann gilt für $X=V\Tilde{\otimes}W$:
 \begin{center}
-    \includegraphics[width=0.28\textwidth]{Dateien/Tensor2.png}
+    \includegraphics[width=0.28\textwidth]{Dateien/Tensor2.pdf}
 \end{center}
 und damit $$\Phi_\kappa \circ \Phi_{\Tilde{\kappa}}=Id_{V\Tilde{\otimes}W} \quad \Phi_{\Tilde{\kappa}} \circ \Phi_\kappa  =Id_{V\otimes W}$$
 Die Abbildungen $\Phi_\kappa$, $\Phi_{\Tilde{\kappa}}$ sind also gegenseitige Umkehrabbildungen und damit Bijektiv!
@@ -34,7 +34,7 @@ $$\kappa(V, W)= \kappa(\sum_i \lambda_ib^i, \sum_j \mu_jb^{,j})=\sum_{i,j} T_{ij
 $$\Phi_\alpha(T)=\Phi_\alpha(\sum_{i,j} T_{ij}\delta_{(b^i, b^{,j})})=\sum_{i,j}T_{ij}\alpha(b^i, b^{,j})$$
 Bildlich passiert also folgendes:
 \begin{center}
-    \includegraphics[width=0.7\textwidth]{Dateien/Tensor3.png}
+    \includegraphics[width=0.7\textwidth]{Dateien/Tensor3.pdf}
 \end{center}
 Diese Definitionen erfüllen alle benötigten Eigenschaften. Allegemin schreibt man:
 $$\kappa(b^i, b^{,j})=b^i\otimes b^{,j}$$
@@ -69,9 +69,9 @@ $$\kappa(b^i, b^{,j})=b^i\otimes b^{,j}$$
 \end{Def}
 
 \begin{Def}{$k$-fache äußere Produkt}
-Das \red{$k$-fache äußere Produkt} eines $\mathbb{K}$-Vektorraums $V$ ist ein Vektorraum $\Lambda^k(V)$, zusammen mit einer $k$-multilinearen alternierenden Abbildung $\wedge: V\times \dots \times V \rightarrow \Lambda^kV$, so dass es für jede $k$-lineare alternierende Abbildung $\alpha: V^k\rightarrow W$ genau eine lineare Abbildung $\Phi_\alpha:\Lambda^kV\rightarrow W$ gibt, so dass das Diagramm.
+Das \red{$k$-fache äußere Produkt (Dachprodukt)} eines $\mathbb{K}$-Vektorraums $V$ ist ein Vektorraum $\Lambda^k(V)$, zusammen mit einer $k$-multilinearen alternierenden Abbildung $\wedge: V\times \dots \times V \rightarrow \Lambda^kV$, so dass es für jede $k$-lineare alternierende Abbildung $\alpha: V^k\rightarrow W$ genau eine lineare Abbildung $\Phi_\alpha:\Lambda^kV\rightarrow W$ gibt, so dass das Diagramm.
 \begin{center}
-    \includegraphics[width=0.28\textwidth]{Dateien/Tensor4.png}
+    \includegraphics[width=0.28\textwidth]{Dateien/Tensor4.pdf}
 \end{center}
 kommutiert.    
 \end{Def}
@@ -143,7 +143,7 @@ Besonders die letzte Definition ist sehr wichtig für spätere Kapitel.
 Guckt euch gerne noch die Website an, weil math3ma Tensoren super erklärt.
 \begin{Beispiel}{Tensorprodukte in der Quantenmechanik}
     Der Spinzustand $\ket{\chi}$ lebt in Spinraum $H_s$ und der Ortszustand $\ket{\psi}$ im Ortsraum $H_r$. Der Gesamtzustand lebt im Tensorproduktraum
-    $$\ket{\chi}\otimes\ket{\psi} \in H_r\otimes H_s$$
+    $$\ket{\psi}\otimes\ket{\chi} \in H_r\otimes H_s$$
     Auch Vielteilchenzustände sind Tensorprodukte von Einteilchenzuständen.
 \end{Beispiel}
 \begin{Beispiel}{Nützliche Tensorwerkzeuge aus den Präsenzaufgaben}
@@ -151,7 +151,7 @@ Guckt euch gerne noch die Website an, weil math3ma Tensoren super erklärt.
     \item Jedes Element von $V\otimes W$ lässt sich schreiben als
     \blue{$$v_1\otimes w_1 + v_2\otimes w_2 \quad \mbox{mit $v_1,v_2\in V$ und $w_1,w_2\in W$}$$}
     \item Ein \red{reiner Tensor} hat immer die Form
-    \blue{$$a\otimes b \quad \mbox{$a\in V$ und $v\in W$}$$}
+    \blue{$$a\otimes b \quad \mbox{$a\in V$ und $b\in W$}$$}
     \item Wie finden wir ein Element von $\R^3 \otimes \R^2$, dass nicht als ein reiner Tensor dargestellt werden kann?\\
     \blue{Am besten wir stellen uns eine Matrix auf und versuchen dann so eine zu finden, deren Rang mindestens 2 ist
     $$
