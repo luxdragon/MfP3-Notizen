@@ -1,7 +1,7 @@
 \newpage
 \section[Höhere Analysis]{Höhere Analysis}
+\textit{Haben Teilmengen $A\subseteq \R^n$ eine kleinere Dimension $k<n$, dann verschwindet das Lebesgue-Maß. Allerdings kann man auch diesen Objekten sowas wie einen Flächeninhalt zuordnen. Voraussetzung dafür ist stets die Parametrisierbarkeit der Oberfläche, wir betrachten also Mannigfaltigkeiten. Der Trick it, dass man die Oberfläche $A$ durch eine Paramterisierung $\varphi: \R^k\rightarrow A$ auf eine Menge $\varphi^{-1}(A)$ zurückführt, deren Lebesgue-Maß nicht verschwindet.}
 \subsection{Integration über Mannigfaltigkeiten}
-Haben Teilmengen $A\subseteq \R^n$ eine kleinere Dimension $k<n$, dann verschwindet das Lebesgue-Maß. Allerdings kann man auch diesen Objekten sowas wie einen Flächeninhalt zuordnen. Voraussetzung dafür ist stets die Parametrisierbarkeit der Oberfläche, wir betrachten also Mannigfaltigkeiten. Der Trick it, dass man die Oberfläche $A$ durch eine Paramterisierung $\varphi: \R^k\rightarrow A$ auf eine Menge $\varphi^{-1}(A)$ zurückführt, deren Lebesgue-Maß nicht verschwindet.
 \begin{Def}{Differenzierbare Kurven}
     Sei $\varphi: \R \rightarrow \R^2, t\mapsto \varphi(t)$ eine Kurve.
     \begin{center}
@@ -36,7 +36,7 @@ Für eindimensionale Mannigfaltigkeiten gilt die nützliche Formel $g(t)=\braket
 \end{center}
 $$\int_C 1 dS(x)=\int_{\text{Parametrisierung}} 1\cdot \varphi(t)\sqrt{g(t)}dt=\int_\varphi \sqrt{g(t)}dt$$
 $$v_1(C)=\int_0^{2\pi} \sqrt{g(t)}dt$$
-Für die Parametrisierung wählen wir einfach $\varphi(t)=(t-\sin(t),t-\cos(t))$. Dann müssen wir $g(t)=||\varphi'(t)||^2$ berechnen. 
+Für die Parametrisierung wählen wir einfach $\varphi(t)=(t-\sin(t),1-\cos(t))$. Dann müssen wir $g(t)=||\varphi'(t)||^2$ berechnen. 
 $$\varphi'(t)=(1-\cos(t), \sin(t))$$
 $$||\varphi'(t)||=\sqrt{\braket{\varphi ', \varphi '}}=\sqrt{(1-\cos(t))^2+\sin(t)}=\sqrt{1-2\cos(t)+\cos^2(t)+\sin^2(t)}$$
 $$=\sqrt{2-2\cos(t)}$$
@@ -140,25 +140,28 @@ Wir merken schon sofort, dass $\lambda_1 x_1+\lambda_2 x_2+\lambda_3 x_3=0$ nur 
     \end{pmatrix}=4$$
 \end{Beispiel}
 \newpage 
-%%\begin{Beispiel}{Präsenzaufgabe 3 aus dem Blatt 9}
+\begin{Beispiel}{Präsenzaufgabe 3 aus dem Blatt 9}
     %Sei $U\subseteq \R^3$ offen. Seien außerdem $f,g: U\rightarrow \R$ beliebig oft differenzierbare Funktionen und $a,b: %U\rightarrow \R^3$ beliebig oft differenzierbare Vektorfelder. Betrachten Sie dann die folgenden Differentialformen: \\
-    %$\text{0-Form} \quad f,$ \\
-    %$\text{1-Form} \quad \eta=a_1 dx_1+a_2dx_2+a_3dx_3,$ \\
-    %$\text{2-Form} \quad \varphi=b_1dx_2\land dx_3 + b_2dx_3\land dx_1+b_3dx_1\land dx_2,$ \\
-    %$\text{3-Form} \quad \omega=gdx_1\land dx_2\land dx_3$ \\
-    %Wir sollen nun jeweils die äußere Ableitung berechnen und die Operatoren $\grad$, $\rot$, div unter Verwendung des %Volumenelements un der vektoriellen Linien-/Flächenelemente auswerten.
-    %$0$-Form:\\
-    %$$df=\frac{\partial f}{\partial x_1}dx_1+\frac{\partial f}{\partial x_2}dx_2+\frac{\partial f}{\partial x_3}dx_3$$
-    %$$\grad(f)=\begin{pmatrix}
-        %\partial_{x_1} f \\
-        %\partial_{x_2} f \\
-        %\partial_{x_3} f
-    %\end{pmatrix}$$
-    %$$\divv f =        \partial_{x_1} f +
-        %\partial_{x_2} f +
-        %\partial_{x_3} f $$
-        %$$\rot f = $$
-%\end{Beispiel}%%%
+    $\text{0-Form} \quad f,$ \\
+    $\text{1-Form} \quad \eta=a_1 dx_1+a_2dx_2+a_3dx_3,$ \\
+    $\text{2-Form} \quad \varphi=b_1dx_2\land dx_3 + b_2dx_3\land dx_1+b_3dx_1\land dx_2,$ \\
+    $\text{3-Form} \quad \omega=gdx_1\land dx_2\land dx_3$ \\
+    Wir sollen nun jeweils die äußere Ableitung berechnen und die Operatoren $\grad$, $\rot$, div unter Verwendung des %Volumenelements un der vektoriellen Linien-/Flächenelemente auswerten.
+    $0$-Form:\\
+    $$df=\frac{\partial f}{\partial x_1}dx_1+\frac{\partial f}{\partial x_2}dx_2+\frac{\partial f}{\partial x_3}dx_3$$
+    Der Ausdruck $df$ erinnert sehr an die \red{Divergenz}.
+    $$d\eta = da_1\land dx_1+da_2\land dx_2 + da_3\land dx_3$$
+    $$={\frac{\partial a_1}{\partial x_1}dx_1\land dx_1} + \frac{\partial a_1}{\partial x_2}dx_2\land dx_1 + \frac{\partial a_1}{\partial x_3}dx_3\land dx_1) +$$ $$( \frac{\partial a_1}{\partial x_1}dx_1\land dx_2 + {\frac{\partial a_1}{\partial x_2}dx_2\land dx_2} + \frac{\partial a_1}{\partial x_3}dx_3\land dx_2) +$$ $$( \frac{\partial a_1}{\partial x_1}dx_1\land dx_3 + \frac{\partial a_1}{\partial x_2}dx_2\land dx_3 + {\frac{\partial a_1}{\partial x_3}dx_3\land dx_3)} $$
+\begin{center}
+        Alle Terme mit zwei gleichen Ableitungen sind gleich 0.
+\end{center}
+
+    $$d\eta = (\frac{\partial a_3}{\partial x_2}-\frac{\partial a_2}{\partial x_3})dx_2\land dx_3+(\frac{\partial a_1}{\partial x_3}-\frac{\partial a_3}{\partial x_1})dx_3\land dx_1+(\frac{\partial a_2}{\partial x_1}-\frac{\partial a_1}{\partial x_2})dx_1\land dx_2$$
+    Der Ausdruck $d\eta$ erinnert sehr an die \red{Rotation}.
+    $$d\varphi=(\frac{\partial b_1}{\partial x_1}+\frac{\partial b_2}{\partial x_2}+\frac{\partial b_3}{\partial x_3})dx_1\land dx_2 \land dx_3$$
+    Und $d\varphi$ an den \red{Gradienten}.
+    $$\omega = dg\land dx_1\land dx_2\land dx_3 = 0$$
+\end{Beispiel}
 \begin{Def}{Glatter Rand}
     Ist $A\subseteq \R^n$ kompakt, dann sagen wir, dass $A$ einen glatten Rand hat, wenn $\forall a\in \partial A$  eine offene Umgebung $U\subseteq \R^n$ existiert und eine stetig differenzierbare Funktion $\Psi: U\rightarrow \R$, sodass 
     \begin{itemize}
@@ -264,4 +267,32 @@ Wir müssen nun eine parametrisierende Kurve finden. Es eignet sich der Weg am R
     $$\vec{r}(t)'=(-4\sin(t), 4\cos(t),0)$$
     $$F(\vec{r}(t))\cdot \vec{r}(t)'=-16\sin^2(t)-16\cos^2(t)=-16$$
     $$\int\int_S \rot F\cdot d\vec{S}=\int_0^{2\pi} -16dt = -32\pi$$
+\end{Beispiel}
+\begin{Beispiel}{Anwendung des Satzes von Green}
+Der \red{Satz von Green} besagt:
+$$\int_A(\frac{\partial}{\partial x_1}F_2(x)-\frac{\partial}{\partial x_2}F_1(x))dx_1dx_2=\int_{\mbox{Randweg $\alpha$}}\braket{F(s), d\vec{s}}, \mbox{ mit $d\vec{s}(t)=\alpha'(t)dt$}$$
+Tatsächlich ist der Satz von Green eine 2D-Version des Satzes von Stokes, jedoch ist dieses Beispiel für die Klausur sehr nützlich. \\ \\
+Wir sollen nun mit dem Satz und einem passend gewählten Vektorfeld ($F:\R^2\rightarrow \R^2$ den Flächeninhalt $I$ der von der Kurve $\alpha:[-1,1]\rightarrow\R^2$ umschlossenen Fläche, wobei $\alpha(t)=(t^2-1, t-t^3)$. Skizzieren sie dafür zunächst die Fläche.
+\begin{center}
+        \includegraphics[width=0.65\textwidth]{Dateien/Green.png}
+\end{center}
+Wir müssen zuerst $\alpha'(t)$ und $F(\alpha(t))$ bestimmen.
+$$\alpha'(t)=(2t,1-3t^2)$$
+$$F(\alpha(t))=\begin{pmatrix}
+    0 \\
+    -\alpha_x
+\end{pmatrix}=\begin{pmatrix}
+    0 \\
+    1-t^2
+\end{pmatrix}$$
+Nun berechnen wir $\braket{F(s), d\vec{s}}$
+$$\braket{F(s), d\vec{s}}=\braket{F(\alpha(t)), \alpha'(t)dt}=\begin{pmatrix}
+    0 \\
+    1-t^2
+\end{pmatrix}\cdot \begin{pmatrix}
+    2t \\
+    t-t^3
+\end{pmatrix}dt=(1-t^2)(t-t^3)dt$$
+Nun müssen wir nur noch integrieren:
+$$I=\int_{-1}^{1} t^5-2t^3+t=\frac{8}{15}$$
 \end{Beispiel}

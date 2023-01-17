@@ -1,0 +1,124 @@
+\newpage
+\section[Partielle Differentialgleichungen]{Partielle Differentialgleichungen}
+\textit{Eine partielle Differentialgleichung ist eine Differentialgleichung, die partielle Ableitungen enthält. Sie gibt als Lösung also eine Funktion, die von mehreren Variablen abhängt. Ein sehr prominentes Beispiel ist die Schrödingengleichung:
+$$i\hbar\frac{\partial}{\partial t}\Psi(\vec{x},t)=-\frac{\hbar^2}{2m}\triangle \Psi(\vec{x},t)+V(\vec{x})\Psi(\vec{x},t)$$
+Wir starten mit partiellen Differentialgleichungen zweiter Ordnung. \\ \\
+Dieses Thema lernt man, ähnlich wie für gewöhnliche DGLs, am besten an Beispielen.}
+\begin{Def}{Partielle Differentialgleichungen zweiter Ordnung}
+Wir suschen eine Funktion
+$$U:G\rightarrow \R \quad (G\subseteq \R^n)$$
+Für die Ableitungen schreiben wir abkürzend:
+$$U_{x_j}=\frac{\partial u}{\partial x_j}\quad u_{x_jx_k}=\frac{\partial^2 u}{\partial x_j \partial x_k}$$
+Die Funktion $u$ soll die partielle Differentialgleichung zweiter Ordnung
+$$F(\underbrace{x_1,...,x_n}_n,\underbrace{u, u_{x_1},...,u_{x_n}}_{n+1}, \underbrace{u_{x_1x_1}, u_{x_1x_2},...,u_{x_nx_n}}_{n^2})=0$$
+erfüllen. Hierbei ist $F$ eine Funktion
+$$F: U\rightarrow \C \quad U\subseteq \R^{2n+1+n^2}$$
+$U$ und $G$ müssen offen und wegzusammenhängend sein. Zusätzlich muss man noch eine Bedingung beachten:
+\begin{enumerate}
+    \item $(x_1,...,x_n, u(x), u_{x_1}(x),...,u_{x_n}(x), u_{x_1x_1}(x),...u_{x_n,x_n}(x))\in U \quad \forall x\in G$
+    \item $F(x_1,...,x_n, u(x), u_{x_1}(x),...,u_{x_n}(x), u_{x_1x_1}(x),...u_{x_n,x_n}(x))=0 \quad \forall x\in G$
+\end{enumerate}
+\end{Def}
+\begin{Def}{Speziallfall partieller Differentialgleichungen zweiter Ordnung}
+Sei
+$$A(u)+h=0 \qquad A(u)=\sum_{j,k=1}^n a_{jk}u_{x_j,x_k}$$
+Man unterteilt Differentialgleichungen dieser Form in:
+\begin{enumerate}
+    \item \red{Quasilinear}: $a_{jk}$ und $h$ sind FUnktionen von $x_1,...,x_n, u, u_{x_1},...,u_{x_n}$
+    \item \red{Semilinear} oder \red{postlinear}: $a_{jk}$ ist eine Funktion von $x_1,...,x_n$ und $h$ von $x_1,...,x_n, u, u_{x_1},...,u_{x_n}$
+    \item \red{Linear}:$h$ ist von der Form:
+    $$h=\sum_{j=1}^n a_ju_{x_j}+au+f$$
+    und $a_{jk}, a_j, a$ und $f$ sind Funktionen von $x_1, ..., x_n$.
+    \item \red{Linear mit konstanten Koeffizienten}: Wie 3. nur sind $a_{jk}, a_j, a$ und $f$ konstant.
+\end{enumerate}
+\end{Def}
+Die letzte Variante ist natürlich besonders benutzerfreundlich.
+\subsection{Typen linearer PDGLs}
+\begin{Def}{Typen von PDGLs mit konstanten Koeffizienten}
+    Sei $$A(u)+\sum_{j=1}^n a_ju_{x_j}+au+f=0$$
+    eine PDGL. Mann kann die symmetrische Matrix $A$ zur Klassifikation dieser Gleichung nutzen. Dazu führen wir eine geeignete Koordinatentransformation ein
+    $$\Tilde{x}=S\cdot x$$
+    Man erhält::
+    $$D=SAS^T$$
+    Nach dem Trägheitssatz von Sylvester sind die Zahlen: \\
+    $k: \mbox{\# positiver Eigenwerte von $D$}$ \\
+    $t: \mbox{\# negativer Eigenwerte von $D$}$ \\
+    $d: \mbox{\# der Eigenwerte von $D$ die den Wert $0$ annehmen}$
+    Die DG enthält nach der Transformation keine gemischten Ableitungen mehr. Es ist:
+    $$D(\Tilde{u})=\sum_{j=1}^n \lambda_j \Tilde{u}_{\Tilde{x_j}\Tilde{x_j}}$$
+    Anhand von $k,t$ und $d$ teilt man die PDGLs in vier Typen ein:
+    \begin{enumerate}
+        \item \red{elliptisscher Typ}: $d=0$, $t=0$ oder $d=0$, $t=n$
+        \item \red{hyperbolischer Typ}: $d=0, t=1$ oder $d=0, t=n-1$
+        \item \red{ultrahyperbolischer Typ}: $d=0, 1<t<n-1$
+        \item \red{parabolischer Typ}: $d>0$
+    \end{enumerate}
+\end{Def}
+\begin{Beispiel}{Typbestimmung I}
+Von welchem Typ ist die folgende PDGL?
+$$\partial_x^2 u - \partial_y^2 u + \partial_z u = 0$$
+Lösung: Wir beobachten:
+$$\partial_x^2 u - \partial_y^2 u + \partial_z u = \sum_{i,k=1}^3 a_{ik}\partial_{x_i}\partial_{x_j} u = 0$$
+$$\Rightarrow A=\diag(1,-1,1)$$
+und lesen dann direkt ab:
+$$k=2\quad t=1\quad d=0$$
+Dies klassifiziert die PDGL als hyperbolisch.
+\end{Beispiel}
+\begin{Beispiel}{Typbestimmung II}
+    Von welchem Typ ist die folgende PDGL?
+    $$\partial_x u + \partial_y^2 u +\partial_z^2 u = 0$$
+    Lösung: wir beobachten:
+    $$\partial_y^2 u + \partial_z^2 u = \sum_{i,k=1}^3 a_{ik}\partial_{x_i}\partial_{x_k}u = h(u)=-\partial_x u$$
+    $$\Rightarrow A=\diag(0,1,1)$$
+    und lesen dann wieder direkt ab:
+    $$k=2\quad t= 0 \quad d=1$$
+    Dies klassifiziert die PDGL als parabolisch.
+\end{Beispiel}
+\begin{Beispiel}{Typbestimmung III}
+      Von welchem Typ ist die folgende PDGL?
+    $$\partial_x^2 u + \partial_x u +\partial_y^2 u + \partial_z^2 u + 2u = 0$$
+    Lösung: wir beobachten:
+    $$\partial_x^2 u + \partial_y^2 u + \partial_z^2 u = \sum_{i,k=1}^n a_{ik}\partial_{x_i}\partial_{x_n}u=-\partial_x u - 2u$$
+    $$\Rightarrow A=\diag(1,1,1)$$
+    und lesen ab:
+    $$k=3\quad t=0 \quad d=0$$
+    Dies klassifiziert die PDGL als elliptisch.
+\end{Beispiel}
+\begin{Beispiel}{Typbestimmung IV}
+    Von welchem Typ ist die folgende PDGL?
+    $$\partial_x^2 u+\partial_y\partial_x u+\partial_x\partial_z u+\partial_y\partial_z u = 0$$
+    Lösung: Hier ist ein bisschen mehr zu tun. Um $A$ ablesen zu können, müssen wir diese Gleichung erst symmetrisieren:
+    $$\partial_x^2 u+\frac{1}{2}\partial_x\partial_y u + \frac{1}{2}\partial_y\partial_x u + \frac{1}{2}\partial_x\partial_z u+ \frac{1}{2}\partial_z\partial_x u+\frac{1}{2}\partial_y\partial_z u + \frac{1}{2}\partial_z\partial_y u$$
+    $$=\sum_{i,k=1}^n a_{ik}\partial_{x_i}\partial_{x_u}u = 0$$
+    $$\Rightarrow \begin{pmatrix} 1 & \frac{1}{2} & \frac{1}{2}\\ \frac{1}{2} & 0 & \frac{1}{2} \\ \frac{1}{2} & \frac{1}{2} & 0\end{pmatrix}$$
+    Von dieser Matrix müssen wir nun die Eigenwerte bestimmen:
+    $$0=\det\begin{pmatrix} 1 & \frac{1}{2} & \frac{1}{2}\\ \frac{1}{2} & 0 & \frac{1}{2} \\ \frac{1}{2} & \frac{1}{2} & 0\end{pmatrix}=-\frac{1}{2}\lambda(\lambda+\frac{1}{2})(\lambda-\frac{3}{2})$$
+    $$\Rightarrow D_A=\diag(0, -\frac{1}{2}, \frac{3}{2})$$
+    Somit gilt:
+    $$k=1 \quad t=1 \quad d=1$$
+    Dies klassifiziert die PDGL als parabolisch.
+\end{Beispiel}
+
+\subsection{Wichtige PDGLs}
+    \begin{Def}{Laplace-Gleichung}
+    Die \red{Laplace-Gleichung} oder auch \red{Potentialgleichung} ist eine PDGL der Form
+    $$\triangle_n u = u_{x_1x_1}+u_{x_2x_2}+\dots + u_{x_nx_n}=0$$
+    Diese ist vom elliptischen Typ. Eine Lösung der Laplace-Gleichung nennen wir \red{harmonische Funktion}
+.        
+    \end{Def}
+    \begin{Def}{Wäremleistungsgleichung}
+      Die \red{Wäremleistungsgleichung} ist eine PDGL der Form
+      $$\triangle_m u=Cu_t\quad \mbox{mit $c\in \C$}$$
+      Diese ist vom parabolischen Typ.
+    \end{Def}
+\begin{Def}{Wellengleichung}
+      Die \red{Wellengleichung} ist eine PDGL der Form
+      $$\triangle_m u=C^{-2}u_{tt}\quad \mbox{mit $c\in \R/\{0\}$}$$
+      Diese ist vom hyperbolischen Typ.
+    \end{Def}
+\begin{Def}{Helmholtz-Gleichung}
+      Die \red{Helmholtz-Gleichung} ist eine PDGL der Form
+      $$-\triangle_m u(x)=\lambda u$$
+      Diese ist vom elliptischen Typ. Hierbei handelt es sich um eine Eigenwertzerlegung für den Laplace-Operator.
+    \end{Def}
+%%%%https://wolke.physnet.uni-hamburg.de/index.php/s/BLTtGawKPrymRT9?dir=undefined&path=%2FMfP-Tutorien%201-4%2C%20beginnend%202019%2FMfP3%2FAUSF%C3%9CHRLICHE%20NOTIZEN%20ROBIN&openfile=84326799

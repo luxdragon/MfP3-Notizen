@@ -1,7 +1,8 @@
 \newpage
 \section[Einführung in die Gebietsintegrale]{Mehrdimensionale Integrale}
+\textit{Um uns mit mehrdimensionalen Integralen zu beschäftigen, müssen wir zuerst gewisse theoretische Begriffe einführen.}
 \subsection{Theoretisches Baukasten}
-Um uns mit mehrdimensionalen Integralen zu beschäftigen, müssen wir zuerst gewisse theoretische Begriffe einführen.
+
 \begin{Def}{Charakteristische Funktion}
 Sei $A\subseteq \R^n$. Die charakteristische Funktion \textit{oder auch} \red{Indikatorfunktion} der Teilmenge $A$ ist die Funktion
 $$1_A:\R^n \rightarrow \R \mbox{ mit } x\rightarrow \begin{cases}1, x\in A \\
@@ -19,7 +20,7 @@ $$v(Q)=v_n(Q)=\prod_{\mu = 1}^n |I_\mu|=\prod_{\mu = 1}^n (b_\mu - a_\mu)$$
 \end{Def}
 \begin{Def}{Treppenfunktion}
 Eine Funktion $\varphi:\R^n \rightarrow \C$ heißt \red{Treppenfunktion auf $\R^n$}, wenn es endlich viele paarweise \textbf{disjunkte} Quader gibt, sodass
-\begin{enumerate}[a)]
+\begin{enumerate}
     \item die Funktion $\varphi$ auf jedem Quader $Q_k$ konstant ist,
     \item $\varphi(x)=0$ für alle $x$ außerhalb von Quadern.
     \end{enumerate}
@@ -90,7 +91,7 @@ Mit den obigen theoretischen Werkzeug können wir nun endlich das Lebesgue-Integ
 Eine Funktion $f:\R^n\rightarrow\C\cup\{\infty\}$ heißt \red{Lebesgue-integrierbar} über $\R^n$, wenn es eine Folge von Treppenfunktionen $\varphi_k$ gibt mit
 $$\lim_{k\rightarrow \infty}||f-\varphi_k||_1=0$$
 In diesem Fall schreiben wir das \red{Lebesgue-Integral}
-$$\int fdx = \int f(x) d^nx = \int_{\R^n} f(x)dx = \lim_{k\rightarrow\infty} \varphi_k(x)dx\in\C$$
+$$\int fdx = \int f(x) d^nx = \int_{\R^n} f(x)dx = \lim_{k\rightarrow\infty}\int \varphi_k(x)dx\in\C$$
 \end{Def}
 \begin{Satz}{Satz}{Bedingte Gleichheit der Riemann und Lebesgue Integrale}
 Sei $A=[a,b]$ ein kompaktes Intervall und $f$ eine über $A$ Riemann-integrierbare Funktion. Dann ist $f$ über $A$ Lebesgue-integrierbar und das Lebesgue-Integral und das Riemann-Integral sind gleich.
@@ -98,12 +99,13 @@ Sei $A=[a,b]$ ein kompaktes Intervall und $f$ eine über $A$ Riemann-integrierba
 Der folgende zwei Sätze sind sehr wichtig in der Theorie der Gebietsintegrale. Im Skript stehen der kleiner und großer Satz von Fubini, wir schreiben hier aber die allgemeine Version aus T. Arens, also guckt euch auch das Skript nochmal an.
 \begin{Satz}{Satz}{Kleiner Satz von Beppo Levi}
 Sei $f:\R^n\rightarrow \R\cup \{\infty\}$ und sei $(\varphi_k)$ eine monoton wachsende oder fallende Folge von Treppenfunktionen, so dass
-\begin{enumerate}[a)]
+\begin{enumerate}
     \item $(\varphi_k)$ punktweise gegen $f$ konvergiert
     \item die Folge ($\int \varphi_k dx$) der Integrale der Treppenfunktionen beschränkt ist.
+
+\end{enumerate}
     Dann ist $f$ integrierbar und es gilt
     $$\int f dx=\lim_{k\rightarrow \infty}\int \varphi_k dx$$
-\end{enumerate}
 \end{Satz}
 \begin{Satz}{Satz}{Satz von Fubini}
 Sind $I\subseteq R^p$ und $J\subseteq R^q$ (möglicherweise unbeschränkte) Quader sowie $f\in L(Q)$ eine auf dem Quader $Q=I\times J \subseteq R^{p+q}$ integrierbare (oder mindestens stetig beschränkte) Funktion, so gibt es Funktionen $g\in L(I)$ und $h\in L(J)$ mit
@@ -138,7 +140,7 @@ $$=\int_J\int_I f(x,y) dx dy = \int_J h(y) dy$$
     \end{equation}
     und damit nach dem Satz von Fubini:
     $$\int_K 1 d(x,y) = \int_\R F(y) dy = \int_{[-1,1]}[\int_{[-\sqrt{r^2-y^2}, \sqrt{r^2-y^2}]} 1dx]dy= \int_{-1}^{1} [\int_{-\sqrt{r^2-y^2}}^{\sqrt{r^2-y^2}} 1dx]dy=\pi r^2$$
-    Eine nützliche Integrationsregel \red{$\int \sqrt{a^2-x^2}=\frac{1}{2}(a^2\sin^{-1}(\frac{x}{a})+x\sqrt{a^2-x^2})+c$}.
+    Eine nützliche Integrationsregel: \red{$\int \sqrt{a^2-x^2}=\frac{1}{2}(a^2\sin^{-1}(\frac{x}{a})+x\sqrt{a^2-x^2})+c$}.
 \end{Beispiel}
 \begin{Beispiel}{Anwendung vom Satz von Fubini}
 Wir wollen auch für eine kompliziertere Funktion, aber noch stets definiert auf einem Rechteck, die interierten Integrale berechnen. Dazu betrachten wir $R=(0,\frac{\pi}{2})\times (0,\frac{\pi}{2})$ und die Funktion $f:R\rightarrow \R$, die durch
@@ -238,7 +240,7 @@ Seien $f,g:\R^n\rightarrow \C$ zwei Funktionen, die fast überall gleich sind. W
 \begin{Satz}{Lemma}{Geometrische Charakterisierung von Nullmengen}
     Ist $N$ eine Nullmenge, so gibt es zu jedem $\epsilon>0$ eine messbare offene Menge $U$ mit $N\subseteq U$ und $v(U)<\epsilon$. \\
     Eine Menge $N\subseteq \R^n$ ist genau dann eine Nullmenge, wenn es zu jedem $\epsilon>0$ abzählbar viele Quader $Q_1, Q_2, ..., Q_n$ gibt, sodass
-    $$N\subseteq \bigcup_{k=1}^{\infty}Q_k \mbox{ und }\sum_{k=1}^\infty v(Q_k)>\epsilon$$
+    $$N\subseteq \bigcup_{k=1}^{\infty}Q_k \mbox{ und }\sum_{k=1}^\infty v(Q_k)<\epsilon$$
 \end{Satz}
 Eine nützliche, aber nicht so wichtige Eigenschaft ist, dass wenn $f$ integrierbar ist, dann auch $f(x-a)$ integrierbar ist, wenn $a$ in der Definitionsmenge ist.
 \newpage

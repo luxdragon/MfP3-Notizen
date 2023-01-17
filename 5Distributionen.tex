@@ -1,0 +1,239 @@
+\newpage
+\section[Distributionen]{Distributionen}
+\textit{Distributionen sind ein erstes Beispiel für sogennante Funktionale, die in der Funktionalanalysis eine wichtige Rolle spielen. Dieses Thema wird euch in MfP4 nochmal beschäftigen.}
+\begin{Def}{Funktional}
+Sei $A\in V$ Teilmenge eines Vektorraums $V$ über $\mathbb{K}$. Dann ist ein Funktional eine Abbildung:
+$$f:A\rightarrow \mathbb{K}$$
+\end{Def}
+\subsection{Testfunktionen und Schwartz-Funktionen}
+Bei einer Distribution ist $V$ nicht irgendein Vektorraum, sonddern \red{der Vektorraum der Testfunktionen}. Bei den etwas allgemeineren temperierten Distributionen ist $V$ der Vektorraum der Schwartz-Funktionen.
+\begin{Def}{Testfunktion}
+    Eine Funktion $\varphi: \R^n \rightarrow \R$ nennen wir \red{Testfunktion}, wenn:
+    \begin{itemize}
+        \item $\varphi$ unendlich oft differenzierbar ist, also $\varphi \in C^\infty(\R^n, \R)$ und
+        \item Der Träger $\underset{\text{Das ist der Abschluß}}{\text{supp}(\varphi)=\overline{\{x\in\R^n| \varphi(x)\neq 0\}}}$
+    \end{itemize}
+\end{Def}
+Der Raum $D(\R^n)\subseteq C^\infty(\R^n, \R)$ der Testfunktionen ist ein Vektorraum.
+\begin{Def}{$D(\R^n)$-Konvergenz}
+    Sei $\varphi_\nu$ eine Folge von Testfunktionen und $K$ eine kompakte Menge, sodass
+    \begin{itemize}
+        \item $\forall K\subseteq \R^n, \forall \nu \in \N: \quad \text{supp}(\varphi_\nu)\subseteq K$
+        \item Es gilt $\partial^\alpha \varphi_\nu\rightarrow \partial^\alpha \varphi$ gleichmäßig für alle Multiindizes $\alpha\in \N^n$.
+    \end{itemize}
+    Dann gilt $$\varphi_\nu \underset{D}{\rightarrow}\varphi$$
+\end{Def}
+\begin{Def}{Schwartz-Funktionen}
+    Eine Funktion $\varphi: \R^n \rightarrow \C$ nennen wir \red{Schwartz-Funktion} (auch temperierte Funktion) wenn:
+    \begin{itemize}
+        \item $\varphi$ unendlich oft diff'bar ist, also $\varphi\in C^\infty (\R^n, \C)$
+        \item Für alle Multiindizes $(\alpha, \beta)\in \N\times \N$ gilt:
+        $$\exists c_{\alpha,\beta}\in \R_+: \quad |x^\beta \partial^\alpha \varphi(x)|\leq c_{\alpha,\beta}$$
+    \end{itemize}
+    
+\end{Def}
+Der Raum $S(\R^n)\subseteq C^\infty(\R^n, \C)$ der Schwartz-Funktionen wird Schwartz-Raum genannt und ist ein Vektorraum. Es gilt:
+$$D(\R^n)\subseteq S(\R^n)\subseteq C^\infty(\R^n, \C)$$
+\begin{Def}{$S(\R^n)$-Konvergenz}
+    Sei $\varphi_\nu$ eine Folge von Schwartz-Funktionen. Wenn für alle Multiindizes $\alpha\in \N^n$ und $j\in \N$
+    $$(1+||x||)^j \partial^\alpha (\varphi_mu(x)-\varphi(x))\rightarrow 0$$
+    Dann gilt $$\varphi_\nu \underset{S}{\rightarrow}\varphi$$
+\end{Def}
+
+\begin{Beispiel}{Eine Testfunktion}
+Wir betrachten die Funktion:
+$$S:\R\rightarrow \R \quad \text{mit} \quad S(t)=\begin{cases}e^{-\frac{1}{t}}\quad \mbox{für $t>0$} \\ 0 \quad \mbox{für $t\leq 0$}\end{cases}$$
+Sie ist $\infty$-oft differenzierbar mit $(\partial^n S)(0)=0$ und einem Polynom $h_n(y)$, sodass:
+$$(\partial^n S)(t)=h_n(\frac{1}{t})e^{-\frac{1}{t}}$$
+Betrachten wir nun die Funktion:
+$$g(t)=S(1+t)\cdot S(1-t)$$
+Sie ist $\infty$-oft differenzierbar und hat einen kompakten Träger, nämlich:
+$\text{supp}(g) = [-1,1]$
+\begin{center}
+    Also gilt: $g\in D(\R)$!
+\end{center}
+\end{Beispiel}
+\begin{Beispiel}{Gauß-Kurve}
+    Betrachten wir die Funktion $\varphi(x)=e^{-x^2}$. \\
+    Sie ist $\infty$-oft differenzierbar. Außerdem gibt es ein Polynom $h_\alpha(x)$, sodass:
+    $$(\partial^\alpha \varphi)(x) = h_\alpha(x)e^{-x^2}$$
+    Sei nun $\beta\in \N$ ein zweiter Index. Dann gilt:
+    $$\lim_{x\rightarrow \infty} |\frac{x^\beta h_\alpha(x)}{e^{x^2}}|=0 \quad \forall \alpha, \beta \in \N\times \N$$
+    Es gibt also ein $k>0$, sodass $\forall |x|>a$ gilt:
+    $$|x^\beta h_\alpha(x) e^{-x^2}|<1$$
+    Auf dem kompakten Intervall $[-k,k]$ muss die stetige Funktion $\varphi(x)$ ein Maximum und ein Minimum annehmen. Es gibt also $\forall (\alpha, \beta)\in \N\times \N$ ein $\exists c_{\alpha,\beta}$, sodass:
+    $$|x^\beta h_\alpha(x)e^{-x^2}|\leq c_{\alpha, \beta}$$
+    Daraus folgt $\varphi\in S$, also ist $\varphi(x)$ eine Schwartz-Funktion. Tatsächlich ist $\varphi(x)=e^{-x^2}$ ein oft benutztes Standardbeispiel für eine Schwartz-Funktion.
+\end{Beispiel}
+\newpage
+\subsection{Distributionen}
+\begin{Def}{Distributionen}
+    Eine \red{Distribution} ist ein Funktional
+    $$T: D\rightarrow \R, \quad \varphi\mapsto T[\varphi]$$
+    mit den Eigenschaften:
+    \begin{itemize}
+        \item linear
+        \item stetig
+    \end{itemize}
+    Dabei bedeutet Stetigkeit, dass für $\forall \varphi_nu \underset{D}{\rightarrow}\varphi$ gilt:
+    $$T[\varphi_\nu]\underset{\nu\rightarrow\infty}{\rightarrow}T[\varphi]$$
+    Der Vektorraum aller Distributionen auf $D$ wird $D'$ gennant.
+\end{Def}
+\begin{Def}{Temperierte Distributionen}
+    Eine \red{temperierte Distribution} ist ein Funktional
+    $$T:S\rightarrow \C, \quad \varphi\mapsto T[\varphi]$$
+    mit den Eigenschaften:
+        \begin{itemize}
+        \item linear
+        \item stetig
+    \end{itemize}
+    Dabei bedeutet Stetigkeit, dass für $\forall \varphi_nu \underset{S}{\rightarrow}\varphi$ gilt:
+    $$T[\varphi_\nu]\underset{\nu\rightarrow\infty}{\rightarrow}T[\varphi]$$
+       Der Vektorraum aller Distributionen auf $S$ wird $S'$ gennant.
+\end{Def}
+\begin{Def}{Reguläre Distributionen}
+Jede lokal-integrierbare Funktion $f\in \mathcal{L}^1_{loc}(\R^n)$ definiert eine Distribution gemäß:
+$$T_f[\varphi]=\int_{\R^n}f(x)\varphi(x)d^n x$$
+Nicht jede Distribution ist so darstellbar (z.B. die $\delta$-Distribution). Allerdings lässt sich für jede Distribution $T\in D'$ eine Funktionenfolge $f_\nu$ finden, sodass gilt:
+$$\lim_{\nu \rightarrow \infty} T_{f_\nu}[\varphi]=T[\varphi] \quad \text{bzw.} \quad \lim_{\nu\rightarrow \infty}\int_{\R^n}f_\nu(x)\varphi(x)dx=T[\varphi]$$
+Dabei ist wichtig, dass $f_\nu(x)\varphi(x) \quad \forall \nu \in \N$ integrierbar ist.
+\end{Def}
+\begin{Def}{Ableitung von Distributionen}
+Für jeden linearen Differentialoperator $L$ und für jede Testfunktion $\varphi\in D$ ist auch $L\varphi$ eine Testfunktion. Wir definieren daher für reguläre Distributionen:
+$$LT_f=T_{Lf}$$
+Der adjungierte Operator $L^*$ ist definiert durch:
+$$\int_{\R^n}(Lf)\varphi dx = \int_{\R^n}f(L^*\varphi)dx$$
+Es gilt also insbesondere:
+$$(LT_f)[\varphi]=T_{Lf}[\varphi]=\int_{\R^n}(Lf)(\varphi)dx=\int_{\R^n}f(L^*\varphi)dx = T[L^* \varphi]$$
+\end{Def}
+\begin{Beispiel}{Adjungierte Operatoren}
+\begin{enumerate}
+    \item $$L=\sum_{j=1}^n a_j \frac{\partial}{\partial x_j} \iff L^*=-\sum_{j=1}^n a_j \frac{\partial}{\partial x_j}-\sum_{j=1}^n \frac{\partial a_j}{\partial x_j}$$
+    \item $$L=\sum_{|\alpha|\leq k}c_\alpha\partial^\alpha \iff L^*=\sum_{|\alpha|\leq k}(-1)^{|\alpha|}c_\alpha\partial^\alpha$$
+\end{enumerate}
+\end{Beispiel}
+\begin{Beispiel}{Nachweis einer Distribution}
+    Ist durch das Funktional
+    $$T:D\rightarrow \R \quad T[\varphi]=\int_0^1 a\varphi(t) dt$$
+    eine Distribution definiert? Wir probieren es aus.
+    \begin{enumerate}
+        \item Wohldefiniertheit: \\
+        $\Rightarrow \varphi(t)$ ist stetig und daher über dem kompakten Intervall $[0,1]$ integrierbar.
+        \item Linear: \\
+        $$\Rightarrow T[\lambda \varphi + \mu \Phi] = \int_0^1 a(\lambda \varphi(t)+\mu\Phi(t))$$
+        $$=\lambda \int_0^1 a\varphi(t)dt + \mu\int_0^1 a\Phi(t) dt = \lambda T[\varphi] + \mu T[\Phi]$$
+        \item Stetigkeit:
+        $\Rightarrow$ Sei $\varphi_nu \underset{D}{\rightarrow}\varphi$, dann konvergiert $\varphi_nu$ gleichmäßig gegen $\varphi$ und somit sind Integral und Limes vertauschbar:
+        $$\lim_{\nu \rightarrow \infty} T[\varphi_D]=\lim_{\nu \rightarrow \infty} \int_0^1 a \varphi\nu(t)dt = \int_0^1 a \lim_{t\rightarrow \infty} \varphi_D(t) dt$$
+        $$=\int_0^1 a \varphi(t) dt = T[\varphi]$$
+        Also ist $T[\varphi]$ eine Distribution.
+    \end{enumerate}
+\end{Beispiel}
+\begin{Def}{$\delta$-Distribution}
+    Sei $a\in \R^n$. Die $\delta$-Distribution zum Punkt $a$ ist definiert durch:
+    $$\delta_a: D\rightarrow \R, \quad \delta_a[\varphi]=\varphi(0)$$
+\end{Def}
+Sie kann nicht durch eine reguläare Distribution dargestellt werden. Es gibt allerdings Folgen $f_k$ von Funktionen, für die gilt:
+$$T_{f_k}[\varphi]\rightarrow \delta_a[\varphi]$$
+\begin{Def}{Dirac-Folgen}
+Sei $a=0$. Für $f\in \mathcal{L}^1(\R^n)$ gelte:
+$$\int_{k\rightarrow \infty} \int_{\R^n} f_k(x)\varphi(x) d^n x = \varphi(0)$$
+und somit:
+$$T_{f_k}\underset{D´}{\rightarrow} \delta_0$$
+    Eine solche Folge nennt man \red{Dirac-Folge}. 
+\end{Def}
+\begin{Beispiel}{Nachweis einer Dirac-Folge}
+Wir betrachten die Folge $f_k(x)=\frac{1}{\pi}\frac{k}{1+k^2x^2}$ auf dem $\R$, also ist $n=1$. Es gilt:
+$$f(y)=\frac{1}{\pi}\frac{1}{1+y^2}$$
+$$\iff f_k(x)=k^n f(kx) = kf(kx) = \frac{1}{\pi}\frac{1}{\pi}\frac{k}{1+k^2x^2}$$
+Außerdem gilt:
+$$\int_\R f(y) dy = \frac{1}{\pi}\int\frac{1}{1+y^2}dy = \frac{1}{\pi}\arctan(x)|_{-\infty}^{\infty}=1$$
+Somit ist $f_k$ eine Dirac-Folge
+\end{Beispiel}
+\begin{Beispiel}{Berechnung von $L\delta$}
+    Sei $L=\sin(x)\partial_x$. Wie lautet $L\delta$? Zunächst bestimmen wir die Adjungierte:
+    $$L=\sin(x)\partial_x\iff L^*=-\sin(x)\partial_x-\partial_x\sin(x)=-\sin(x)\partial_x-\cos(x)$$
+    Daraus folgt:
+    $$(L\delta)[\varphi]=\delta[L^*\varphi]=\delta[-\sin(x)\partial_x\varphi-\cos(x)\varphi(x)]$$
+    $$=-\sin(0)\varphi´(0)-\cos(0)\varphi(0)=-\varphi(0)$$
+\end{Beispiel}
+\begin{Def}{Faltungsintegral}
+    Es gilt $(f\star g)(x)=\int_{\R^n}f(y)g(x-y)d^ny$ und $(f\star g)(x)\in \mathcal{L}^1(\R^n)$.
+\end{Def}
+Man schreibt abkürzend oft $(\overset{\lor}{\tau}_x g)(y)=g(x-y)$.
+\begin{Satz}{Eigenschaft}{Distribution als Faltung}
+Eine Distribution kann man über die Faltung ausdrücken.
+$$(f\star \varphi)(x)=T_f[\overset{\lor}{\tau}_x \varphi]$$
+\end{Satz}
+\subsection{Fouriertransformation}
+Das ist ein enorm mächtiges Werkzeug in der Physik. Die Fouriertransformation filtert aus einem periodischen Signal die Anteile der Frequenzen heraus. Zur Fouriertransofrmation gibt es ein \red{super Video} von \href{https://github.com/luxdragon/MfP3-Notizen}{3blue1brown} auf Youtube.
+\begin{Def}{Fouriertransformierte}
+    Das Integral
+    $$\hat{f}(\xi)=\frac{1}{\sqrt{2\pi}^n}\int_{\R^n}f(x)e^{-i<x,\xi>}d^nx \quad \xi \in \R^n$$
+    ist die \red{Fouriertransformierte}.
+\end{Def}
+\begin{Def}{Inversionsformel der Fouriertransformierte}
+Die Inversionsformel der Fouriertransformierten ist
+$$f(x)=\hat{\hat{f}}(-x)=\frac{1}{\sqrt{2\pi}^n}\int_{\R^n}\hat{f}(\xi)e^{i<\xi, x>}d^n\xi$$
+\end{Def}
+\begin{Satz}{Eigenschaften}{Bemerkungen zur Fouriertransformation}
+    Für die Fouriertransformation gelten ein paar wichtige Regeln:
+    \begin{itemize}
+        \item Sei $(\tau_a f)(x)=f(x-a)$, dann ist:
+        $$\widehat{\tau_a f}(\xi)=\hat{f}(\xi)e^{-i\braket{a,\xi}}$$
+        \item Für die Faltung gilt das \red{Faltungstheorem}:
+        $$(\widehat{f\star g})(\xi)=\sqrt{2\pi}^n \hat{f}\cdot \hat{g}$$
+        \item Ist $f$ stetig diff'bar mit kompakten Träger, gilt:
+        $$(\widehat{\partial_j f})(\xi) = i\cdot \xi_j \cdot \hat{f}(\xi)$$
+        \item Ist $x\mapsto x_j f$ für $j\in \{1,...n \}$ integrierbar, dann gilt:
+        $$(\widehat{x_j f})(\xi)=i\cdot \partial_j \cdot \hat{f}(\xi)$$
+        \item Sind $\hat{f}g$ und $f\hat{g}$ integrierbar, dann gilt:
+        $$\int_{\R^n}\hat{f}(x)g(x)dx = \int_{\R^n}f(x)\hat{g}(x)dx$$
+        \item Wir setzen für $\lambda \neq 0$ $g(x)=f(\lambda x)$, dann gilt:
+        $$\hat{g}(\xi)=\frac{1}{|\lambda|^n}\hat{f}(\frac{1}{\lambda}\xi)$$
+    \end{itemize}
+    Darüber hinaus gelten noch die folgenden Regeln:
+    \begin{itemize}
+        \item Die Fourtiertransformation ist eine \blue{linere Operation}, d.h.:
+        $$\widehat{(af(\xi)+bg(\xi))}=a\hat{f}(\xi)+b\hat{g}(\xi)$$
+        \item Erhaltung der Symmetrie:
+        $$f(-x)=f(x) \iff \hat{f}(-\xi)=\hat{f}(\xi) \quad \mbox{(gerade)}$$
+        $$f(-x)=-f(x) \iff \hat{f}(-\xi)=-\hat{f}(\xi) \quad \mbox{(ungerade)}$$
+    \end{itemize}
+\end{Satz}
+\begin{Def}{Fouriertransformation regulärer Distributionen}
+    Für reguläre Ditributionen setzt man ganz einfach:
+    $$\hat{T_f}[\varphi]=T_{\hat{f}}[\varphi]$$
+    Nun gilt mit den Rechenregeln:
+    $$\hat{T_f} [\varphi]=T_{\hat{f}} [\varphi]=\int_{\R^n}\hat{f}(x)\varphi(x)dx = \int_{\R^n}f(x)\hat{\varphi}(x)dx=T_f[\hat{\varphi}]$$
+    Leider ist $\hat{\varphi}$ nicht wieder eine Testfunktion.
+\end{Def}
+\begin{Def}{Fouriertransformation temperierter Distributionen}
+Für \red{temperierte Distributionen} $T\in S'$ definieren wir somit:
+$$\hat{T} [\varphi]= T [\hat{\varphi}]$$
+Aus der Inversionsformel folgt:
+$\hat{\hat{T}} [\varphi(x)]=T [\hat{\varphi}(x)] = T [\varphi(-x)]$
+Fasst man die $\delta$-Distribution als eine Abbuldung $S\rightarrow \C$ auf, dann definiert sie eine temperierte Distribution. Aus praktischen Gründen definiert man die Funktion:
+$$e_a(x)=\frac{1}{\sqrt{2\pi}^n}e^{i\braket{x,a}}$$
+\end{Def}
+\begin{Beispiel}{Fourier Transformierte von einer einfachen Funktion}
+    Wir sollen die Fourier Transformierte von $e^{-ax^2}$ berechnen.
+    $$\mathcal{F}(f(x))(\xi)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} f(x)e^{-i\xi x}dx=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} e^{-i\xi x-ax^2}dx$$
+    $$=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} e^{-a(x+\frac{i\xi}{2a})^2-\frac{\xi^2}{4a}}dx$$
+    $$=\frac{1}{\sqrt{2\pi}}e^{-\frac{\xi^2}{4a}}\int_{-\infty}^{\infty}e^{-ay^2}dy$$
+    $$=\frac{1}{\sqrt{2a}}e^{-\frac{\xi^2}{4a}}$$
+\end{Beispiel}
+\begin{Beispiel}{Fourier Transformierte der $\delta$-Distribution}
+    Wir berechnen jetzt die Fouriertransformation der $\delta$-Distribution:
+    $$\hat{\delta_a} [\varphi]= \delta_a [\hat{\varphi}]=\hat{\varphi}(a)=\frac{1}{\sqrt{2\pi}^n} \int_{\R^n}\varphi(x) e^{-i\braket{x,a}}d^n x = T_{e_a} [\varphi]$$
+    und erhalten die reguläre Distribution zur Funktion:
+    $$e_{-a}[x]=\frac{1}{\sqrt{2\pi}^n}e^{-i\braket{x,a}}$$
+    Der Physiker kennt eine "$\delta$-Funktion" mit der sich die $\delta$-Distribution als reguläre Distribution schreiben lässt:
+    $$\hat{\delta_a} [\varphi] = T_{\hat{\delta}} [\varphi] = \int_{\R^n} \hat{\delta}(x)\varphi(x) d^n x = \int_{\R^n} \frac{1}{\sqrt{2\pi}^n}e^{-i\braket{x,a}}\varphi(x)d^n x$$
+    $$\iff \hat{\delta_a}(x)=\frac{1}{\sqrt{2\pi}^n}e^{-i\braket{x,a}}$$
+    Diese Identität für die "$\delta$-Funktion" des Physikers ist sehr wichtig und wird oft gebraucht. Insbesondere der Fall $n=1$ mit $a=0$ sollte im Hinterkopf bleiben:
+    $$\delta_0(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty} e^{i\xi x}dx$$
+    Gerne verwendet man auch die Schreibweise:
+    $$\delta_0(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}e^{i\xi x}dx = \frac{1}{2\pi}\int_{-\infty}^{\infty}e^{-i\xi x}dx=\widehat{\frac{1}{\sqrt{2\pi}}}$$
+
+\end{Beispiel}
