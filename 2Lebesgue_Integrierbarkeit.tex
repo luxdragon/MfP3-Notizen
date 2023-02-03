@@ -96,6 +96,11 @@ $$\int fdx = \int f(x) d^nx = \int_{\R^n} f(x)dx = \lim_{k\rightarrow\infty}\int
 \begin{Satz}{Satz}{Bedingte Gleichheit der Riemann und Lebesgue Integrale}
 Sei $A=[a,b]$ ein kompaktes Intervall und $f$ eine über $A$ Riemann-integrierbare Funktion. Dann ist $f$ über $A$ Lebesgue-integrierbar und das Lebesgue-Integral und das Riemann-Integral sind gleich.
 \end{Satz}
+\begin{Satz}{Korollar}{Majorantenkriterium}
+    Wenn eine Funktion $f$ über eine $\sigma$-kompakte Menge\footnote{Jede offene und abgeschlossene Menge des $\R^n$ ist $\sigma$-kompakt!} $A$ stetig ist und diese eine integrierbare Majorante hat:
+    $$|f(x)|\leq F(x) \quad \mbox{fast überall auf }A$$
+    Dann ist $f$ über $A$ Lebesgue-integrierbar.
+\end{Satz}
 Der folgende zwei Sätze sind sehr wichtig in der Theorie der Gebietsintegrale. Im Skript stehen der kleiner und großer Satz von Fubini, wir schreiben hier aber die allgemeine Version aus T. Arens, also guckt euch auch das Skript nochmal an.
 \begin{Satz}{Satz}{Kleiner Satz von Beppo Levi}
 Sei $f:\R^n\rightarrow \R\cup \{\infty\}$ und sei $(\varphi_k)$ eine monoton wachsende oder fallende Folge von Treppenfunktionen, so dass
@@ -142,6 +147,7 @@ $$=\int_J\int_I f(x,y) dx dy = \int_J h(y) dy$$
     $$\int_K 1 d(x,y) = \int_\R F(y) dy = \int_{[-1,1]}[\int_{[-\sqrt{r^2-y^2}, \sqrt{r^2-y^2}]} 1dx]dy= \int_{-1}^{1} [\int_{-\sqrt{r^2-y^2}}^{\sqrt{r^2-y^2}} 1dx]dy=\pi r^2$$
     Eine nützliche Integrationsregel: \red{$\int \sqrt{a^2-x^2}=\frac{1}{2}(a^2\sin^{-1}(\frac{x}{a})+x\sqrt{a^2-x^2})+c$}.
 \end{Beispiel}
+
 \begin{Beispiel}{Anwendung vom Satz von Fubini}
 Wir wollen auch für eine kompliziertere Funktion, aber noch stets definiert auf einem Rechteck, die interierten Integrale berechnen. Dazu betrachten wir $R=(0,\frac{\pi}{2})\times (0,\frac{\pi}{2})$ und die Funktion $f:R\rightarrow \R$, die durch
 $$f(x)=\sin(x_1+2x_2), \mbox{ $x=(x_1,x_2)\in R$}$$
@@ -158,11 +164,29 @@ $$=\int_0^{\frac{\pi}{2}} (\cos(2x_2)-\cos(2x_2+\frac{\pi}{2}))dx_2$$
 $$=[\frac{1}{2}\sin(2x_2)-\frac{1}{2}\sin(2x_2+\frac{\pi}{2})]_0^{\frac{\pi}{2}}$$
 $$=\frac{1}{2}(\sin(\pi)-\sin(\frac{3\pi}{2})-\sin(0)+\sin(\frac{\pi}{2})) = 1$$
 \end{Beispiel}
+\begin{Beispiel}{Lebesgue Integrierbarkeit}
+    Ist die Funktion:
+    $$f: (0,1)\rightarrow \R$$
+    $$x\mapsto e^{-\frac{1}{x}}$$
+    lebesgue integrierbar? \\ \\
+    \blue{Wir haben ein Problem bei $x\rightarrow 0$, allerdings können wir $\frac{1}{x}$ mit $y$ ersetzen und bekommen
+    $\lim_{x\rightarrow 0}e^{-\frac{1}{x}}=\lim_{y\rightarrow 0}e^{-y}=0$}.  Beweis: \\
+    \begin{itemize}
+        \item Die Menge $(0,1)$ ist \red{$\sigma$-Kompakt}, weil jede offene und abgeschlossene Menge über $\R^n$ $\sigma$-kompakt ist.
+        \item $f$ ist stetig und daher auch lokal integrierbar.
+    \end{itemize}
+    Dann können wir das \red{Majorantenkriterium} anwenden:
+    $$|f(x)|<F(x)=1 \mbox{ fast überall auf }(0,1): \quad -\frac{1}{x}<0 \quad \iff \quad e^{-\frac{1}{x}}<e^0$$
+Da $F(x)=1$ eine auf $(0,1)$ integrierbare Majorante ist,  ist $f$ auch lebesgue integrierbar.
+    
+    
+\end{Beispiel}
 \begin{Beispiel}{Fubini ist nicht immer anwendbar}
 \begin{center}
     \includegraphics[width=\textwidth]{Dateien/Fubini.pdf}
 \end{center}
 \end{Beispiel}
+
 \newpage
 \subsection{Volumina und Nullmengen}
 
@@ -462,59 +486,78 @@ Daraus folgt, dass $f'$ Lebesgue-integrierbar ist über $[x_0, x]$ und dass $$f(
     Daraus folgt, dass $F(x)=\int_T f(x,t)dt$ auf $X$ stetig ist.
 \end{Satz}
 \begin{Satz}{Satz}{Differentiationssatz}
-        Voraussetzungen:
+        Seien $X\subseteq \R^n$ und $T\subseteq \R^p$. Sind die folgende Voraussetzungen erfüllt:
     \begin{itemize}
-        \item Sei $X\subseteq \R^n$ und $T\subseteq \R^p$
-        \item $f: X\times T\rightarrow \C$, $(x,t)\rightarrow f(x,t)$ ist für feste $x$ über $T$ integrierbar
-        \item Für feste $t$ ist die Funktion $x\longmapsto f(x,t)$ stetig diff'bar
+        \item $f(x,t)$ ist für feste $x$ über $T$ integrierbar
+        \item Für feste $t$ ist die Funktion $x\longmapsto f(x,t)$ stetig differenzierbar
         \item Es gibt eine intergierbare Majorante $\Phi:T\rightarrow \R$ mit
-        $$|\frac{\partial f}{\partial v_\mu}(x,t)|\leq \Phi(t)\mbox{ für }\forall (x,t)\in X\times T\mbox{ für }\mu = 1,...,n$$
+        $$|\frac{\partial f}{\partial x_i}(x,t)|\leq \Phi(t)\mbox{ für }\forall (x,t)\in X\times T\mbox{ für }i = 1,...,n$$
     \end{itemize}
-    Daraus folgt, dass
+    Dann folgt daraus, dass
     \begin{itemize}
-        \item $F(x)=\int_T f(x,t)dt$ ist stetig diff'bar,
-        \item $t\mapsto\frac{\partial}{\partial x_p}f(x,t)$ ist für jedes $x$ integrierbar und
+        \item $F(x)=\int_T f(x,t)dt$ ist stetig differenzierbar und
         \item es gilt $\frac{\partial}{\partial x_\mu}\int_T f(x,t)dt=\int_T \frac{\partial}{\partial x_\mu} (x,t) dt$.
     \end{itemize}
 \end{Satz}
-\begin{Beispiel}{Fourier-Transformation}
-Die \red{Fourier-Transformierte} ist definiert durch:
-$$\hat{f}(x)=\frac{1}{\sqrt{2\pi}}\int_{\R} f(t)e^{-ixt}dt$$
-wobei $f$ eine integrierbare Funktion ist. Wir überprüfen $\hat{f}(x)$ zunächst auf Stetigkeit: \\
-\begin{enumerate}
-    \item $t\mapsto f(t)e^{-ixt}$ ist für feste $x$ über $\R$ integrierbar? \\
-    \blue{Ja, denn $|f| = |e^{-ixt}f(t)|$ ist eine integrierbare Majorante.}\\
-    \item Für feste $t$ ist $x\mapsto f(t)e^{-ixt}$ stetig?\\
-    \blue{Ja klar! $f(t)$ ist fest und $e^z$ ist immer stetig.} \\
-    \item Gibt es eine integrierbare Majorante? \\
-    \blue{Ja, nämlich $\Phi(t)=|f(t)|$.}\\
-\end{enumerate}
-Somit ist $\hat{f}$ tatsächlich stetig. Wir setzten nun $f(t)=e^{-\frac{t^2}{2}}\Rightarrow \hat{f}(x)=\frac{1}{\sqrt{2\pi}}\int_{\R} e^{-\frac{t^2}{2}}e^{-ixt}dt$.
-Zunächst formen wir den Exponenten etwas um: \\
-$$-\frac{t^2}{2}-ixt=-\frac{1}{2}(t+ix)^2-\frac{x^2}{2}$$
-So erhalten wir das Integral:
-$$\hat{f}(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}\int_{\R} e^{-\frac{1}{2}(t+ix)^2}dt$$
-Nun können wir den Differentationssatz anwenden. Dazu schränken wir ohne Beschränkung der Allgemeinheit den Definitionsbereich von $x$ auf das offene Intervall $(-a,a)$ ein.
-$$F_a(x)=\int_{\R}e^{-\frac{1}{2}(t+ix)^2}dt \quad x\in(-a,a)\quad a\in\R$$
-\begin{enumerate}
-    \item Ist $t\mapsto e^{-\frac{1}{2}(t+ix)^2}$ integrierbar? \\
-    \blue{Wir finden die integrierbare Majorante $|e^{-\frac{1}{2}(t+ix)^2}|=|e^{-\frac{1}{2}t^2+\frac{1}{2}x^2-ixt}| =e^{\frac{1}{2}x}e^{-\frac{1}{2}t^2}=\Phi(t)$} \\
-    \item Ist $x\mapsto e^{-\frac{1}{2}(t+ix)^2}$ stetig differenzierbar?\\
-    \blue{ja klar! Es gilt $\frac{\partial}{\partial x}e^{-\frac{1}{2}(t+ix)^2}=-i(t+ix)e^{-\frac{1}{2}(t+ix)^2}$} \\
-    \item Gibt es eine integrierbare Majorante von $\frac{\partial}{\partial x}e^{-\frac{1}{2}(t+ix)^2}$? \\
-    \blue{$|\frac{\partial}{\partial x}e^{-\frac{1}{2}(t+ix)^2}|\leq (|t|+a)e^{-\frac{1}{2}t^2}e^{\frac{1}{2}a^2}$} \\
-\end{enumerate}
-Wir können nun den Differentationssatz anwenden:
-\blue{$$\frac{dF_a}{x}=\int_{\R}\frac{\partial}{\partial x} e^{-\frac{1}{2}(t+ix)^2}dt$$
-$$=\lim_{b\rightarrow \infty} ie^{-\frac{1}{2}(t+ix)^2}|_{-b}^{b}=0$$}
-Bisher haben wir uns nur auf das Intervall $x\in(-a,a)$ eingeschränkt. Wir können aber problemlos schreiben:
-\blue{$$\frac{\partial F}{\partial x}=\lim_{a\rightarrow \infty} \frac{\partial F_a}{\partial x}=\lim_{a\rightarrow \infty} 0 = 0$$}
-Somit ist $F(x)=F(0)=const.$ und wir können rechnen:
-\blue{$$F(x)=F(0)=\int_{\R}e^{-\frac{1}{2}t^2}dt=\sqrt{2\pi} \quad \mbox{(Gauß-Integral)}$$ }
-Jetzt können wir die Fourier-Transformierte ausrechnen:
-\blue{$$\hat{f}(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}^2}f(x)=e^{-\frac{1}{2}x^2}$$}
-Also sind $\hat{f}(x)$ und $f(t)$ die gleichen Funktionen! Dies ist eine ganz wichtige Feststellung, die z.B. bei der Unschärferelation der Quantenmechanik wichtig wird.
+\begin{Beispiel}{Altklausuraufgabe mit dem Differentiationssatz}
+    Zeigen Sie, dass die Funktion $h:(0,\infty)\rightarrow \R$,
+    $$h(x)=\int_0^\infty \frac{e^{-xy \sin(y)}}{y}dy$$
+differenzierbar ist und berechnen Sie die Ableitung $h'(1)\in\R$. \\ \\
+\textbf{Schritt 1} (zeigt die Integrierbarkeit von $h$ über $y$): \\
+\begin{itemize}
+    \item $(0,\infty)$ ist $\sigma$-kompakt.
+    \item $h(x)$ ist stetig und daher lokal integrierbar.
+    \item Nach dem \red{Majorantenkriterium} finden wir eine integrierbare Majorante $h(y)$.  Aus dem Mittelwertsatz folgt $$\exists \xi \in (0,y): \frac{\sin(y)-\sin(0)}{y-0}=\sin'(\xi)=\cos(\xi)\iff |\frac{\sin(y)}{y}|=|\cos(\xi)|\leq 1$$
+    $$|\frac{e^{-xy}\sin(y)}{y}|=e^{-xy}|\frac{\sin(y)}{y}|\leq e^{-xy}=F(y)$$
+\end{itemize}
+\textbf{Schritt 2} \blue{(wir überspringen es, weil $h(x)$ offensichtlich nach $x$ diffbar ist)}:\\ \\
+\textbf{Schritt 3} (finden von einer integrierbaren Majorante $\Phi(y)$): \\
+Wir beschränken uns auf das Intervall $(\frac{x_0}{2},\infty)$ um die Majorante zu finden:
+$$|\frac{\partial}{\partial x}(e^{-xy}\frac{\sin(y)}{y})|=e^{-xy}|\sin(y)|\leq e^{-xy}\underbrace{\leq}_{\text{\red{Die Majorante darf nicht von x abhängen!}}} e^{-\frac{x_0}{2}y}=\Phi(y)$$ \\ \\
+Nach dem Differentationssatz ist $h(x)$ differenzierbar.
+$$h'(1)=\frac{\partial}{\partial x}\int_0^\infty \frac{e^{-xy}\sin(y)}{y}dy|_{x=1}=\int_0^\infty \frac{\partial}{\partial x}\frac{e^{-xy}\sin(y)}{y}dy|_{x=1}$$
+$$=-\int_0^\infty e^{-xy}\sin(y)dy|_{x=1}=-\int_0^\infty e^{-y}\sin(y)dy=$$
+$$=\frac{1}{2}e^{-y}(\sin(y)+\cos(y))|_0^\infty=-\frac{1}{2}$$
 \end{Beispiel}
+
+%\begin{Beispiel}{Fourier-Transformation}
+%Die \red{Fourier-Transformierte} ist definiert durch:
+%$$\hat{f}(x)=\frac{1}{\sqrt{2\pi}}\int_{\R} f(t)e^{-ixt}dt$$
+%wobei $f$ eine integrierbare Funktion ist. Wir überprüfen $\hat{f}(x)$ zunächst auf Stetigkeit: \\
+%\begin{enumerate}
+%    \item $t\mapsto f(t)e^{-ixt}$ ist für feste $x$ über $\R$ integrierbar? \\
+%    \blue{Ja, denn $|f| = |e^{-ixt}f(t)|$ ist eine integrierbare Majorante.}\\
+%    \item Für feste $t$ ist $x\mapsto f(t)e^{-ixt}$ stetig?\\
+%    \blue{Ja klar! $f(t)$ ist fest und $e^z$ ist immer stetig.} \\
+%    \item Gibt es eine integrierbare Majorante? \\
+%    \blue{Ja, nämlich $\Phi(t)=|f(t)|$.}\\
+%\end{enumerate}
+%Somit ist $\hat{f}$ tatsächlich stetig. Wir setzten nun $f(t)=e^{-\frac{t^2}{2}}\Rightarrow \hat{f}(x)=\frac{1}{\sqrt{2%\pi}}\int_{\R} e^{-\frac{t^2}{2}}e^{-ixt}dt$.
+%Zunächst formen wir den Exponenten etwas um: \\
+%$$-\frac{t^2}{2}-ixt=-\frac{1}{2}(t+ix)^2-\frac{x^2}{2}$$
+%So erhalten wir das Integral:
+%$$\hat{f}(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}\int_{\R} e^{-\frac{1}{2}(t+ix)^2}dt$$
+%Nun können wir den Differentationssatz anwenden. Dazu schränken wir ohne Beschränkung der Allgemeinheit den %Definitionsbereich von $x$ auf das offene Intervall $(-a,a)$ ein.
+%$$F_a(x)=\int_{\R}e^{-\frac{1}{2}(t+ix)^2}dt \quad x\in(-a,a)\quad a\in\R$$
+%\begin{enumerate}
+%    \item Ist $t\mapsto e^{-\frac{1}{2}(t+ix)^2}$ integrierbar? \\
+%    \blue{Wir finden die integrierbare Majorante $|e^{-\frac{1}{2}(t+ix)^2}|=|e^{-\frac{1}{2}t^2+\frac{1}{2}x^2-ixt}| =e^{\frac{1}{2}x}e^{-\frac{1}{2}t^2}=\Phi(t)$} \\
+%    \item Ist $x\mapsto e^{-\frac{1}{2}(t+ix)^2}$ stetig differenzierbar?\\
+%    \blue{ja klar! Es gilt $\frac{\partial}{\partial x}e^{-\frac{1}{2}(t+ix)^2}=-i(t+ix)e^{-\frac{1}{2}(t+ix)^2}$} \\
+%    \item Gibt es eine integrierbare Majorante von $\frac{\partial}{\partial x}e^{-\frac{1}{2}(t+ix)^2}$? \\
+%    \blue{$|\frac{\partial}{\partial x}e^{-\frac{1}{2}(t+ix)^2}|\leq (|t|+a)e^{-\frac{1}{2}t^2}e^{\frac{1}{2}a^2}$} \\
+%\end{enumerate}
+%Wir können nun den Differentationssatz anwenden:
+%\blue{$$\frac{dF_a}{x}=\int_{\R}\frac{\partial}{\partial x} e^{-\frac{1}{2}(t+ix)^2}dt$$
+%$$=\lim_{b\rightarrow \infty} ie^{-\frac{1}{2}(t+ix)^2}|_{-b}^{b}=0$$}
+%Bisher haben wir uns nur auf das Intervall $x\in(-a,a)$ eingeschränkt. Wir können aber problemlos schreiben:
+%\blue{$$\frac{\partial F}{\partial x}=\lim_{a\rightarrow \infty} \frac{\partial F_a}{\partial x}=\lim_{a\rightarrow \infty} 0 = 0$$}
+%Somit ist $F(x)=F(0)=const.$ und wir können rechnen:
+%\blue{$$F(x)=F(0)=\int_{\R}e^{-\frac{1}{2}t^2}dt=\sqrt{2\pi} \quad \mbox{(Gauß-Integral)}$$ }
+%Jetzt können wir die Fourier-Transformierte ausrechnen:
+%\blue{$$\hat{f}(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}^2}f(x)=e^{-\frac{1}{2}x^2}$$}
+%Also sind $\hat{f}(x)$ und $f(t)$ die gleichen Funktionen! Dies ist eine ganz wichtige Feststellung, die z.B. bei der %Unschärferelation der Quantenmechanik wichtig wird.
+%\end{Beispiel}
 \newpage
 Aus all diesen Sätzen kommt nun der Höhepunkt der Integrationstheorie. Die folgenden zwei Sätze sind von enormer bedeutung in der Physik, also merkt sie euch. 
 \begin{Satz}{Satz}{Satz von Tonelli}

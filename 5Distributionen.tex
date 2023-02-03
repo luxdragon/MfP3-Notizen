@@ -11,7 +11,7 @@ Bei einer Distribution ist $V$ nicht irgendein Vektorraum, sonddern \red{der Vek
     Eine Funktion $\varphi: \R^n \rightarrow \R$ nennen wir \red{Testfunktion}, wenn:
     \begin{itemize}
         \item $\varphi$ unendlich oft differenzierbar ist, also $\varphi \in C^\infty(\R^n, \R)$ und
-        \item Der Träger $\underset{\text{Das ist der Abschluß}}{\text{supp}(\varphi)=\overline{\{x\in\R^n| \varphi(x)\neq 0\}}}$
+        \item Der Träger $\underset{\text{Das ist der Abschluß}}{\text{supp}(\varphi)=\overline{\{x\in\R^n| \varphi(x)\neq 0\}}}$ kompakt ist.
     \end{itemize}
 \end{Def}
 Der Raum $D(\R^n)\subseteq C^\infty(\R^n, \R)$ der Testfunktionen ist ein Vektorraum.
@@ -131,7 +131,7 @@ $$(LT_f)[\varphi]=T_{Lf}[\varphi]=\int_{\R^n}(Lf)(\varphi)dx=\int_{\R^n}f(L^*\va
 \end{Beispiel}
 \begin{Def}{$\delta$-Distribution}
     Sei $a\in \R^n$. Die $\delta$-Distribution zum Punkt $a$ ist definiert durch:
-    $$\delta_a: D\rightarrow \R, \quad \delta_a[\varphi]=\varphi(0)$$
+    $$\delta_a: D\rightarrow \R, \quad \delta_a[\varphi]=\varphi(a)$$
 \end{Def}
 Sie kann nicht durch eine reguläare Distribution dargestellt werden. Es gibt allerdings Folgen $f_k$ von Funktionen, für die gilt:
 $$T_{f_k}[\varphi]\rightarrow \delta_a[\varphi]$$
@@ -142,13 +142,20 @@ und somit:
 $$T_{f_k}\underset{D´}{\rightarrow} \delta_0$$
     Eine solche Folge nennt man \red{Dirac-Folge}. 
 \end{Def}
+\begin{Satz}{Satz}{Satz von Dirac}
+    Sei $f\in \mathcal{L}^1(\R^n)$ eine integrierbare Funktion mit
+    $$\int_{\R^n}f(x)d^nx=1$$
+    Für $k\in \N$ sei $f_k(x)=k^nf_1(kx)$. Dann gilt für jede Testfunktion $\varphi\in \mathcal{D}(\R^n)$:
+    $$\lim_{k\rightarrow \infty}\int_{\R^n}f_k(x)\varphi(x)d^nx = \varphi(0)$$
+    also $f_k\underset{\mathcal{D}'}{\rightarrow}\delta_0$.
+\end{Satz}
 \begin{Beispiel}{Nachweis einer Dirac-Folge}
-Wir betrachten die Folge $f_k(x)=\frac{1}{\pi}\frac{k}{1+k^2x^2}$ auf dem $\R$, also ist $n=1$. Es gilt:
-$$f(y)=\frac{1}{\pi}\frac{1}{1+y^2}$$
-$$\iff f_k(x)=k^n f(kx) = kf(kx) = \frac{1}{\pi}\frac{1}{\pi}\frac{k}{1+k^2x^2}$$
-Außerdem gilt:
-$$\int_\R f(y) dy = \frac{1}{\pi}\int\frac{1}{1+y^2}dy = \frac{1}{\pi}\arctan(x)|_{-\infty}^{\infty}=1$$
-Somit ist $f_k$ eine Dirac-Folge
+Wir betrachten die Folge $f_k(x)=\frac{1}{\pi}\frac{k}{1+k^2x^2}$ auf dem $\R$. Um den Satz von Dirac anzuwenden müssen wir als erstes $f_k(x)$ mit $f_1(x)$ ausdrücken:
+
+$$f_k(x)=k^n f(kx) = kf(kx) = \frac{1}{\pi}\frac{k}{1+k^2x^2}$$
+Mit $f_1(x)=\frac{1}{\pi}\frac{1}{1+x^2}$ müssen wir nur noch zeigen, dass der Integral $1$ beträgt:
+$$\int_\R f_1(x) dx = \frac{1}{\pi}\int\frac{1}{1+x^2}dx = \frac{1}{\pi}\arctan(x)|_{-\infty}^{\infty}=1$$
+Somit ist $f_k$ eine Dirac-Folge und $T_{f_k}\rightarrow \delta_0$.
 \end{Beispiel}
 \begin{Beispiel}{Berechnung von $L\delta$}
     Sei $L=\sin(x)\partial_x$. Wie lautet $L\delta$? Zunächst bestimmen wir die Adjungierte:
